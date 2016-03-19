@@ -6,13 +6,9 @@ var connection = env.Dbconnection;
 var userCRUD = CRUD(connection,'user');
 var md5 = require('md5');
 
-//console.log("userCRUD:",userCRUD);
-
 exports.login = function(req,res){
   	  var email = req.body.user_email;
       var password = md5(req.body.user_password);
-      //console.log("req body:",req.body);
-      console.log(password);
       userCRUD.load({
         email_id : email,
         password : password
@@ -47,7 +43,8 @@ exports.signup = function(req,res){
                 status:false,
                 message :'user already exists..'
             };
-          res.jsonp(resdata);
+            console.log("error",err);
+            res.jsonp(resdata);
         }else{
 
         userCRUD.create({
