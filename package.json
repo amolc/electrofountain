@@ -17,6 +17,7 @@
     "morgan": "~1.7.0",
     "mysql": "^2.10.2",
     "mysql-crud": "^0.1.4",
+    "node-gcm": "^0.14.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
