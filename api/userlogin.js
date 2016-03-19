@@ -4,13 +4,18 @@ var CRUD = require('mysql-crud');
 var env = require('./environment');
 var connection = env.Dbconnection;
 var userCRUD = CRUD(connection,'user');
+var md5 = require('md5');
+
+//console.log("userCRUD:",userCRUD);
 
 exports.login = function(req,res){
   	  var email = req.body.user_email;
-      var password = req.body.user_password;
+      var password = md5(req.body.user_password);
+      //console.log("req body:",req.body);
+      console.log(password);
       userCRUD.load({
-        user_email : email,
-        user_password : password
+        email_id : email,
+        password : password
       }, function (err, val) {
         var resdata={
             record:'',
@@ -31,9 +36,9 @@ exports.login = function(req,res){
 }
 
 exports.signup = function(req,res){
-    
+      var password = md5(req.body.user_password); 
       userCRUD.load({
-        user_email : req.body.user_email,
+        email_id : req.body.user_email,
       }, function (err, val) {
         if(val.length>0){
           
@@ -46,10 +51,10 @@ exports.signup = function(req,res){
         }else{
 
         userCRUD.create({
-            'user_fname': req.body.user_fname,
-            'user_lname': req.body.user_lname,
-            'user_email': req.body.user_email,
-            'user_password': req.body.user_password,
+            'first_name': req.body.user_fname,
+            'last_name': req.body.user_lname,
+            'email_id': req.body.user_email,
+            'password': password,
             'created_on':env.timestamp(),
             'modified_on':env.timestamp()
           },function(error, result) {

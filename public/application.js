@@ -72,8 +72,8 @@ angular.module('DemoApp').controller('MainController', [
               var userSession = {
                 'login': true,
                 'userid': res.record[0].id,
-                'user_email': res.record[0].user_email,
-                'user_name': res.record[0].user_name
+                'user_email': res.record[0].email_id
+                //'user_name': res.record[0].user_name
               };
               store.set('userSession', userSession);
               $scope.init();

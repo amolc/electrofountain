@@ -4,7 +4,7 @@ var http = require('http');
 
 var enviroment = {
 	Dbconnection : mysql.createPool({
-			database : 'demoapp',
+			database : 'electrofountain',
 		    user : 'ftdev',
 			password : '10gXWOqeaf',
 		    host :'apps.fountaintechies.com',

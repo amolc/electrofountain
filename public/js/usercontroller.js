@@ -171,20 +171,22 @@ angular.module('DemoApp').controller('usercontroller', [
       }
       $http.post(baseUrl + 'gettodos',tododata).success(function(res, req) {
         $scope.todolist = res.record;
-        for (var i = 0; i < $scope.todolist.length; i++) {
-            var utctolocaltime = new Date($scope.todolist[i].reminder_time +" "+ 'UTC');
-            var replacetime = utctolocaltime.toString();
-            
-            var hours = utctolocaltime.getHours();
-            var minutes = utctolocaltime.getMinutes();
-            var ampm = hours >= 12 ? 'pm' : 'am';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            minutes = minutes < 10 ? '0'+minutes : minutes;
-            var localtime = hours + ':' + minutes + ' ' + ampm;
-           
-            $scope.todolist[i].reminder_time = localtime; 
-        };
+        if($scope.todolist){
+          for (var i = 0; i < $scope.todolist.length; i++) {
+              var utctolocaltime = new Date($scope.todolist[i].reminder_time +" "+ 'UTC');
+              var replacetime = utctolocaltime.toString();
+              
+              var hours = utctolocaltime.getHours();
+              var minutes = utctolocaltime.getMinutes();
+              var ampm = hours >= 12 ? 'pm' : 'am';
+              hours = hours % 12;
+              hours = hours ? hours : 12; // the hour '0' should be '12'
+              minutes = minutes < 10 ? '0'+minutes : minutes;
+              var localtime = hours + ':' + minutes + ' ' + ampm;
+             
+              $scope.todolist[i].reminder_time = localtime; 
+          };
+        }
         
       }).error(function() {
         console.log("Connection Problem.");
