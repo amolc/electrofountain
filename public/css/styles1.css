@@ -1,0 +1,62 @@
+/*
+Theme Name: Xing Child
+Template: xing
+*/
+
+/* 修改产品搜索框宽度 */
+.widgetwrap .search-field,
+#searchform #s {
+     width: auto!important;
+     }
+
+
+/* Search product 文字尺寸 */
+h3, .woocommerce-account h2, .woocommerce-cart h2, .woocommerce-page h2 {
+     font-size: 14px!important;
+     }
+
+/* 导航条整体文字缩小 */
+.nav1 > li a {
+     font-size: 1em!important;
+     }
+
+/* woo产品页面1,2,3...文字尺寸 */
+.woocommerce nav.woocommerce-pagination ul {
+     font-size: 11px!important;
+     }
+
+/*顶部菜单宽度*/
+.nav2 {
+         width: auto!important;
+         }
+         
+/* 修改cart page的 caculate shipping 文字颜色 */
+.woocommerce-cart .cart-collaterals .cart_totals .shipping-calculator-button {
+                color:#F00!important;
+                }
+
+/* modify call-top width */
+#callout-top {
+	width: 10% !important;
+}
+
+/* modify contact form 7 list style */
+span.wpcf7-list-item {
+	display: block;
+	margin-top: 1em;
+}
+
+/* modify paypal express icon height  */
+.woocommerce .payment_method_paypal_express img { height: 25px; }
+
+/* Modify demo bar position */
+.demo_store { 
+	top: auto !important;
+	bottom: 0 !important;
+	padding: 0.6em 0 !important;
+}
+
+/* 修改 product earn points font size */
+span.wc-points-rewards-product-message {
+	font-size:12px!important;
+}

@@ -10,7 +10,7 @@ var SampleApplicationModule = angular.module('DemoApp', ['ui.router','angular-st
 
 SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider','storeProvider', function($urlRouterProvider, $stateProvider , storeProvider) {
   storeProvider.setStore('sessionStorage');
-  $urlRouterProvider.otherwise('/signin');
+  $urlRouterProvider.otherwise('/home');
   $stateProvider
     .state('signin', {
       url: '/signin',
@@ -27,17 +27,16 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider','storePro
       templateUrl: 'templates/signup.html'
     })
 
-    /*$stateProvider
-    .state('add_todos', {
-      url: '/add_todos/:todo_id',
-      templateUrl: 'templates/add_todos.html'
+    .state('home', {
+      url: '/home',
+      templateUrl: 'templates/home_page.html'
     })
 
-    $stateProvider
-    .state('listtodos', {
-      url: '/listtodos',
-      templateUrl: 'templates/list_todos.html'
+    /*.state('homepage', {
+      url: '/homepage',
+      templateUrl: 'templates/home.html'
     })*/
+    
 }]);
 
 
