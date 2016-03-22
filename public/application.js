@@ -36,6 +36,11 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider','storePro
       url: '/account',
       templateUrl: 'templates/account.html'
     })
+
+    .state('profileview', {
+      url: '/profileview',
+      templateUrl: 'templates/profile_view.html'
+    })
     
 }]);
 
