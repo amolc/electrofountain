@@ -32,10 +32,10 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider','storePro
       templateUrl: 'templates/home_page.html'
     })
 
-    /*.state('homepage', {
-      url: '/homepage',
-      templateUrl: 'templates/home.html'
-    })*/
+    .state('account', {
+      url: '/account',
+      templateUrl: 'templates/account.html'
+    })
     
 }]);
 
@@ -67,16 +67,26 @@ angular.module('DemoApp').controller('MainController', [
     $scope.userlogin = function(user,valid) {
       if(valid){
           $http.post(baseUrl + 'login',user).success(function(res, req) {
+            console.log("User Details:",res);
             if (res.status == true) {
               var userSession = {
                 'login': true,
                 'userid': res.record[0].id,
-                'user_email': res.record[0].email_id
-                //'user_name': res.record[0].user_name
+                'user_email': res.record[0].email_id,
+                'address': res.record[0].address,
+                'apartment': res.record[0].apartment,
+                'city': res.record[0].city,
+                'country': res.record[0].country,
+                'first_name': res.record[0].first_name,
+                'last_name': res.record[0].last_name,
+                'phone_no': res.record[0].phone_no,
+                'state': res.record[0].state,
+                'zip' : res.record[0].zip
               };
               store.set('userSession', userSession);
+              console.log("userDetails:",userSession);
               $scope.init();
-              $state.go('welcomepage');
+              //$state.go('welcomepage');
             } else if (res.status === false) {
               console.log("login failed");
               $scope.loginfailuremsg = 'Please Enter Valid Email Address and Password';
@@ -105,7 +115,7 @@ angular.module('DemoApp').controller('MainController', [
     */
     $scope.usersignout = function() {
       store.remove('userSession');
-      $location.path('signin');
+      $location.path('home');
       $scope.init();
     };
 
@@ -115,7 +125,7 @@ angular.module('DemoApp').controller('MainController', [
          $http.post(baseUrl + 'signup', userinfo).success(function(res,req){
             console.log("res:",res);
             if(res.status == true){
-                  $scope.signupmsg = 'User Created Successfully';
+                  $scope.signupmsg = 'User Created Successfully. Please login .';
                   $scope.showsignmsg = true;
                   
                   $timeout(function() {
@@ -123,12 +133,22 @@ angular.module('DemoApp').controller('MainController', [
                       $scope.showsignmsg = false;
                     }, 3000);
                     document.getElementById("signupform").reset();
-                    $location.path('signin');
+                    //$location.path('home');
                     }, 2000);
               
             }
             else{
               console.log("error");
+                  $scope.signuperrmsg = res.message;
+                  $scope.showsignuperrmsg = true;
+                  
+                  $timeout(function() {
+                    $timeout(function() {
+                      $scope.showsignuperrmsg = false;
+                    }, 3000);
+                    document.getElementById("signupform").reset();
+                    $location.path('login');
+                    }, 2000);
             }
             
          }).error(function(){

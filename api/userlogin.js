@@ -48,8 +48,8 @@ exports.signup = function(req,res){
         }else{
 
         userCRUD.create({
-            'first_name': req.body.user_fname,
-            'last_name': req.body.user_lname,
+            /*'first_name': req.body.user_fname,
+            'last_name': req.body.user_lname,*/
             'email_id': req.body.user_email,
             'password': password,
             'created_on':env.timestamp(),
