@@ -68,6 +68,7 @@ var userlogin = require('./api/userlogin.js');
 var todos = require('./api/todos.js');
 var device_register = require('./api/device_register.js');
 var sendpushnotification = require('./api/sendpushnotification.js');
+var billingApi = require('./api/billing.js');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -77,6 +78,10 @@ app.use(function(req, res, next) {
 
 app.post('/api/login', userlogin.login);
 app.post('/api/signup',userlogin.signup);
+app.post('/api/updatebillingaddress',billingApi.updatebillingaddress);
+
+
+
 app.post('/api/addtodos',todos.addtodos);
 app.post('/api/gettodos',todos.gettodos);
 app.post('/api/gettododetails',todos.gettododetails);

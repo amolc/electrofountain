@@ -59,3 +59,7 @@ div#md-date-pane0 {
 table.md-calendar-day-header {
     margin: 0px;
 }
+.billing_frm_input {
+    border-radius:0px !important;
+    width: 100% !important;
+}

@@ -41,6 +41,16 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider','storePro
       url: '/profileview',
       templateUrl: 'templates/profile_view.html'
     })
+
+    .state('editbillingaddress', {
+      url: '/editbillingaddress',
+      templateUrl:'templates/billing_address.html'
+    })
+
+    .state('editshippingaddress', {
+      url: '/editshippingaddress',
+      templateUrl:'templates/shipping_address.html'
+    })
     
 }]);
 
@@ -91,7 +101,7 @@ angular.module('DemoApp').controller('MainController', [
               store.set('userSession', userSession);
               console.log("userDetails:",userSession);
               $scope.init();
-              //$state.go('welcomepage');
+              $state.go('profileview');
             } else if (res.status === false) {
               console.log("login failed");
               $scope.loginfailuremsg = 'Please Enter Valid Email Address and Password';
@@ -162,6 +172,47 @@ angular.module('DemoApp').controller('MainController', [
       }
       
     };
+
+     $scope.Billing_address = function(billingadd,valid){
+      
+      if(valid){
+            billingadd.userid = $scope.userSession.userid;
+            console.log("billingadd:",billingadd);
+         $http.post(baseUrl + 'updatebillingaddress', billingadd).success(function(res,req){
+            console.log("res:",res);
+            if(res.status == true){
+                  $scope.billingadd_success= 'Billing Address Updated Successfully';
+                  $scope.showbillingadd_success = true;
+                  
+                  $timeout(function() {
+                    $timeout(function() {
+                      $scope.showbillingadd_success = false;
+                    }, 3000);
+                    document.getElementById("billing_address_frm").reset();
+                    $location.path('profileview');
+                    }, 2000);
+              
+            }
+            else{
+              console.log("error");
+                  $scope.billingadd_error = res.message;
+                  $scope.showbillingadd_error = true;
+                  
+                  $timeout(function() {
+                    $timeout(function() {
+                      $scope.showbillingadd_error = false;
+                    }, 3000);
+                    }, 2000);
+            }
+            
+         }).error(function(){
+            console.log("Connection Problem ..");
+         });  
+      }
+      
+    };
+
+
     
   }
 ]);

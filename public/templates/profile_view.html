@@ -2,7 +2,7 @@
 	<div class="container" style="margin-top: 30px;" data-ng-init="init()">	
 		<div class="col-md-12">
 			<p class="myaccount_user">
-			Hello <strong>{{userSession.emailid}}</strong> (not sameer.vedpathak18? <a href="http://www.electrodragon.com/account/customer-logout/">Sign out</a>). From your account dashboard you can view your recent orders, manage your shipping and billing addresses and <a href="http://www.electrodragon.com/account/edit-account/">edit your password and account details</a>.</p>
+			Hello <strong>{{userSession.first_name}} {{userSession.last_name}}</strong> (not {{userSession.first_name}}? <a  ng-click="usersignout()">Sign out</a>). From your account dashboard you can view your recent orders, manage your shipping and billing addresses and <a href="http://www.electrodragon.com/account/edit-account/">edit your password and account details</a>.</p>
 		</div>
 		<div class="col-md-11">
 			<h5>Orders</h5>
@@ -29,6 +29,7 @@
 			<h5>My Addresses</h5>
 			<p>The following addresses will be used on the checkout page by default.</p>
 			<div class="col-md-6">
+				<a ui-sref="editbillingaddress" class="right">Edit</a>
 				<h5>Billing Address</h5>
 				<div class="row">
 					<div class="col-md-6">
@@ -41,6 +42,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
+				<a ui-sref="editshippingaddress" class="right">Edit</a>
 				<h5>Shipping Address</h5>
 				<div class="row">
 					<div class="col-md-6">
