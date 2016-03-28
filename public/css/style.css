@@ -63,3 +63,24 @@ table.md-calendar-day-header {
     border-radius:0px !important;
     width: 100% !important;
 }
+.homepage_cartbtn_margin {
+    margin-top: 10px;
+}
+.cart_button {
+    background: #efefef !important;
+    padding: 5px !important;
+}
+.div_comman_margin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.cart_btn_detailspage {
+    background: #b32d59;
+    padding: 5px; 
+    border-radius: 2px;
+    color: white;
+}
+
+.nav-tabs li a,
+.nav-tabs li a:active,
+.nav-tabs li a:focus { outline:0px !important; -webkit-appearance:none;  text-decoration:none; }  
