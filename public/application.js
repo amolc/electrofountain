@@ -51,6 +51,11 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider','storePro
       url: '/editshippingaddress',
       templateUrl:'templates/shipping_address.html'
     })
+
+    .state('productdetailspage', {
+      url: '/productdetailspage',
+      templateUrl:'templates/product_details_page.html'
+    })
     
 }]);
 

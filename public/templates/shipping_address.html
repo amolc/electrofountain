@@ -1,58 +1,108 @@
 <div>
-	<div class="container" style="margin-top:5%">
-		<form role="form" data-ng-submit="userlogin(user,loginfrm.$valid)" name="loginfrm" id="billing_address_frm" style="padding-right: 27px;" novalidate >
-				<label>Billing Address</label>
+	<div class="container" style="margin-top:5%" data-ng-controller="usercontroller">
+		<form role="form" data-ng-submit="update_shipping_details(shipping_add_info,billing_addfrm.$valid)" name="shipping_addfrm" id="shipping_address_frm" style="padding-right: 27px;" novalidate >
+				<label>Shipping Address</label>
 				<div class="row" >
 					<div class="col-md-6 ">
 						<div class="form-group">
 							<label for="firstname">First Name</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter First Name" data-ng-model="user.user_email" name= "first_name" required>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter First Name" data-ng-model="shipping_add_info.first_name" name= "first_name" tabindex="2" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.first_name.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please First Name</div>
+								</div>
+							</span>
 						</div>
 						<div class="form-group">
 							<label for="companyname">Company Name</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter Company Name" name="company_name" data-ng-model="user.user_password" required>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter Company Name" name="company_name" data-ng-model="shipping_add_info.company_name" tabindex="4">
 						</div>
 						<div class="form-group">
-							<label for="address">Address</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter Address" name="Address" data-ng-model="user.user_password" required>
+							<label for="apartent">Apartment</label>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter Apartment information" name="apartment" data-ng-model="shipping_add_info.apartment" tabindex="6" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.apartment.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please Enter Apartment Info</div>
+								</div>
+							</span>
 						</div>
 						<div class="form-group">
 							<label for="city">City</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter City Name" name="city" data-ng-model="user.user_password" required>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter City Name" name="city" data-ng-model="shipping_add_info.city" tabindex="8" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.city.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please Enter City</div>
+								</div>
+							</span>
 						</div>
 						<div class="form-group">
-							<label for="address">State</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter State Name" name="state" data-ng-model="user.user_password" required>
+							<label for="address">Country</label>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter Country Name" name="country" data-ng-model="shipping_add_info.country" tabindex="10" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.country.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please Enter Country Name</div>
+								</div>
+							</span>
 						</div>
-						
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="lastname">Last Name</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter Last Name" data-ng-model="user.user_email" name= "last_name" required>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter Last Name" name="last_name" data-ng-model="shipping_add_info.last_name" tabindex="3" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.last_name.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please Enter Last Name</div>
+								</div>
+							</span>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Email Address</label>
-							<input type="email" class="form-control billing_frm_input" placeholder="Enter Email Address" name="email" data-ng-model="user.user_password" required>
+							<label for="mb_number">Mobile Number</label>
+							<input type="number" class="form-control billing_frm_input" placeholder="Enter Mobile Number" name="mb_number" data-ng-model="shipping_add_info.mobile_number" tabindex="5" ng-minlength="8" ng-maxlength="5" required>
+							<span >
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.mb_number.$error" role="alert">
+									<div data-ng-message="required" class="text-danger" > Enter Mobile Number </div>
+									<div data-ng-message="maxlength" class="text-danger" data-ng-if="maxlength">Enter Mobile Number Upto 10 Digit</div>
+									<div data-ng-message="minlength" class="text-danger" data-ng-if="minlength">Enter Mobile Number Min 8 Didit</div>
+								</div>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.mb_number.$error" role="alert">
+									<div data-ng-message="maxlength" class="text-danger">Enter Mobile Number Upto 10 Digit</div>
+									<div data-ng-message="minlength" class="text-danger">Enter Mobile Number Min 8 Digit</div>
+								</div>
+							</span>
 						</div>
 						<div class="form-group">
-							<label for="apartent">Apartment</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter Apartment information" name="apartment" data-ng-model="user.user_password" required>
+							<label for="address">Address</label>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter Address" name="address" data-ng-model="shipping_add_info.address" tabindex="7" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.address.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please Enter Address Info</div>
+								</div>
+							</span>
 						</div>
 						<div class="form-group">
-							<label for="address">Country</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter Country Name" name="country" data-ng-model="user.user_password" required>
+							<label for="address">State</label>
+							<input type="text" class="form-control billing_frm_input" placeholder="Enter State Name" name="state" data-ng-model="shipping_add_info.state" tabindex="9" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.state.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please Enter State Name</div>
+								</div>
+							</span>
 						</div>
-						
 						<div class="form-group">
 							<label for="address">Zip</label>
-							<input type="text" class="form-control billing_frm_input" placeholder="Enter Zip code" name="Address" data-ng-model="user.user_password" required>
+							<input type="number" class="form-control billing_frm_input" placeholder="Enter Zip code" name="zip" data-ng-model="shipping_add_info.zip" tabindex="11" required>
+							<span>
+								<div data-ng-messages="shipping_addfrm.$submitted && shipping_addfrm.zip.$error" role="alert" class="error_msg">
+									<div data-ng-message="required">Please Enter Zip Code</div>
+								</div>
+							</span>
 						</div>
+						
 					</div>
 				</div>
-	            
-	            <button type="submit" class="btn btn-sm btn-default">Submit</button>
-
+	            <button type="submit" class="btn btn-sm btn-default" tabindex="16">Submit</button>
+	            <div ng-model="billingadd_success" ng-show="showbillingadd_success" class="success_msg">{{billingadd_success}}</div>
+	            <div ng-model="billingadd_error" ng-show="showbillingadd_error" class="success_msg">{{billingadd_error}}</div>
 	          </form>
 	</div>
 </div>

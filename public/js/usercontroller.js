@@ -232,7 +232,21 @@ angular.module('DemoApp').controller('usercontroller', [
       }).error(function() {
         console.log("Connection Problem.");
       });
-    };  
+    };
+
+    $scope.update_shipping_details = function(shipping_address) {
+      console.log("shipping_address:",shipping_address);
+      console.log("Cookies:",$scope.userSession);
+     /* var tododata = {
+        todo_id: $stateParams.todo_id
+      }
+      $http.post(baseUrl + 'gettododetails',tododata).success(function(res, req) {
+        $scope.data = res.record[0];
+        
+      }).error(function() {
+        console.log("Connection Problem.");
+      });*/
+    }  
 
 
     }

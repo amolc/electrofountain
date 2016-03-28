@@ -3,9 +3,9 @@ var mysql = require('mysql');
 var CRUD = require('mysql-crud');
 var env = require('./environment');
 var connection = env.Dbconnection;
-var billingCRUD = CRUD(connection,'user');
+var shipping = CRUD(connection,'shipping_address');
 
-exports.updatebillingaddress = function(req,res){
+/*exports.updatebillingaddress = function(req,res){
 		if(req.body.companyname == 'undefined' || req.body.companyname == 0)
 		{
 			req.body.companyname = "";
@@ -64,4 +64,4 @@ exports.getuserdetails = function(req,res){
 	      res.jsonp(responsedata);
 	    }
   });
-}
+}*/
