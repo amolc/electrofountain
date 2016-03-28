@@ -95,7 +95,7 @@
                       <div id="callout">Contact us by email if you have any questions! Info@electrofountain.com</div><!-- #callout -->
             <ul class="cart-nav">
         <li class="welcome" ng-show="!userSession.login">Welcome, Guest</li>
-        <li class="welcome" ng-show="userSession.login">Welcome,{{userSession.first_name}}
+        <li class="welcome" ng-show="userSession.login">Welcome,<label ui-sref="profileview">{{userSession.first_name}}</label>
         <li ng-show="!userSession.login"><a class="log-in" ui-sref="account" title="Login or register for a new account">Login / Register</a></li>
         <li ng-show="userSession.login"><a class="log-in" title="Login or register for a new account" ng-click="usersignout()">Logout</a></li>
         <li class="cart-status"><a class="cart-contents" href="http://www.electrodragon.com/store/cart/" title="View your shopping cart">2 items / <span class="amount">&#36;1.50</span></a></li>

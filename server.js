@@ -79,7 +79,7 @@ app.use(function(req, res, next) {
 app.post('/api/login', userlogin.login);
 app.post('/api/signup',userlogin.signup);
 app.post('/api/updatebillingaddress',billingApi.updatebillingaddress);
-
+app.post('/api/getuserdetails',billingApi.getuserdetails);
 
 
 app.post('/api/addtodos',todos.addtodos);

@@ -15,12 +15,13 @@ exports.updatebillingaddress = function(req,res){
 		billingCRUD.update({
 				'id':req.body.userid,
 			},{
-				'first_name':req.body.firstname,
-				'last_name':req.body.lastname,
-				'company_name':req.body.companyname,
+				'first_name':req.body.first_name,
+				'last_name':req.body.last_name,
+				'company_name':req.body.company_name,
 				'address':req.body.address,
 				'city':req.body.city,
 				'state':req.body.state,
+				'country':req.body.country,
 				'zip':req.body.zip,
 				'mobile_number':req.body.mobile_number,
 				'apartment':req.body.apartment,
@@ -42,4 +43,27 @@ exports.updatebillingaddress = function(req,res){
 				res.jsonp(responsedata);
 			}
 		});
+}
+
+exports.getuserdetails = function(req,res){
+  	 console.log("req body:",req.body);
+  	  billingCRUD.load({
+  	  	'id': req.body.userid
+  	  },function(error, result) {
+	    if (result) {
+	      responsedata = {
+	        status: true,
+	        record: result,
+	        message: 'User Details'
+	      }
+	      res.jsonp(responsedata);
+	    } else {
+	      responsedata = {
+	        status: false,
+	        record: result,
+	        message: 'User Details Failed to Get..'
+	      }
+	      res.jsonp(responsedata);
+	    }
+  });
 }

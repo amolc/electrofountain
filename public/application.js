@@ -69,6 +69,9 @@ angular.module('DemoApp').controller('MainController', [
     $scope.init = function() {
 
        $scope.userSession = store.get('userSession') || {};
+         if($scope.userSession){
+            $scope.userdetails();
+         }
     }
 
     /*
@@ -134,6 +137,12 @@ angular.module('DemoApp').controller('MainController', [
       $scope.init();
     };
 
+     /**
+      @function signup
+      @author Sameer Vedpathak
+      @initialDate 
+      @lastDate
+    */
     $scope.signup = function(userinfo,valid){
       console.log("userinfo:",userinfo);
       if(valid){
@@ -173,8 +182,14 @@ angular.module('DemoApp').controller('MainController', [
       
     };
 
+    /**
+      @function Update Billing_address 
+      @author Sameer Vedpathak
+      @initialDate 
+      @lastDate
+    */
+
      $scope.Billing_address = function(billingadd,valid){
-      
       if(valid){
             billingadd.userid = $scope.userSession.userid;
             console.log("billingadd:",billingadd);
@@ -211,6 +226,18 @@ angular.module('DemoApp').controller('MainController', [
       }
       
     };
+
+    $scope.userdetails = function(){
+        var user_id = {
+          userid : $scope.userSession.userid
+        };
+      
+      $http.post(baseUrl + 'getuserdetails', user_id).success(function(res,req){
+        $scope.bill_add_info = res.record[0];
+      });
+
+    }
+
 
 
     
