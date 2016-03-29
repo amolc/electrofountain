@@ -76,6 +76,7 @@ angular.module('DemoApp').controller('MainController', [
        $scope.userSession = store.get('userSession') || {};
          if($scope.userSession){
             $scope.userdetails();
+            //$scope.getshippingaddress();
          }
     }
 
@@ -90,7 +91,7 @@ angular.module('DemoApp').controller('MainController', [
     $scope.userlogin = function(user,valid) {
       if(valid){
           $http.post(baseUrl + 'login',user).success(function(res, req) {
-            console.log("User Details:",res);
+            //console.log("User Details:",res);
             if (res.status == true) {
               var userSession = {
                 'login': true,
@@ -107,7 +108,7 @@ angular.module('DemoApp').controller('MainController', [
                 'zip' : res.record[0].zip
               };
               store.set('userSession', userSession);
-              console.log("userDetails:",userSession);
+              //console.log("userDetails:",userSession);
               $scope.init();
               $state.go('profileview');
             } else if (res.status === false) {
@@ -232,6 +233,13 @@ angular.module('DemoApp').controller('MainController', [
       
     };
 
+    /**
+      @function userdetails
+      @author Sameer Vedpathak
+      @initialDate 
+      @lastDate
+    */
+
     $scope.userdetails = function(){
         var user_id = {
           userid : $scope.userSession.userid
@@ -243,8 +251,57 @@ angular.module('DemoApp').controller('MainController', [
 
     }
 
+    /**
+      @function getshippingaddress
+      @author Sameer Vedpathak
+      @initialDate 
+      @lastDate
+    */
 
+    $scope.getshippingaddress = function() {
+        var customer_id  = {
+          userid:$scope.userSession.userid
+        }
+          $http.post(baseUrl  + 'getshippingaddress', customer_id).success(function(res,req){
+            
+            $scope.usershippingdetails = res.record[0];
+            //console.log("res:", $scope.usershippingdetails);
+          }).error(function(){
+            console.log("Connection Problem!!!");
+          });
+    }
 
     
+     /**
+      @function add_shipping_details
+      @author Sameer Vedpathak
+      @initialDate 
+      @lastDate
+    */
+    $scope.add_shipping_details = function(shipping_address,valid) {
+    if(valid){
+      shipping_address.userid = $scope.userSession.userid;  
+      
+        $http.post(baseUrl  + 'updateshippingaddress', shipping_address).success(function(res,req){
+          if(res.status == true){
+            $scope.ship_add_success = 'Shipping Address Successfully Added';
+            $scope.showshipaddmsg = true;
+            // Simulate 2 seconds loading delay
+            $timeout(function() {
+                // Loadind done here - Show message for 3 more seconds.
+                $timeout(function() {
+                  $scope.showshipaddmsg = false;
+                }, 3000);
+              document.getElementById("shipping_address_frm").reset();
+              $state.go('profileview');
+            }, 2000);
+          }
+
+        }).error(function(){
+          console.log("Connection Problem!!!");
+        });
+      } 
+  }
+
   }
 ]);

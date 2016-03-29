@@ -41,15 +41,15 @@
 					<div class="col-md-6"></div>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6" data-ng-init="getshippingaddress()">
 				<a ui-sref="editshippingaddress" class="right">Edit</a>
 				<h5>Shipping Address</h5>
 				<div class="row">
 					<div class="col-md-6">
-						<p>Full Name</p>
-						<p>Address</p>
-						<p>city+Zip</p>
-						<p>State</p>
+						<p>{{usershippingdetails.shipping_first_name}} {{usershippingdetails.shipping_last_name}}</p>
+						<p>{{usershippingdetails.shipping_address}}</p>
+						<p>{{usershippingdetails.shipping_city}} {{usershippingdetails.shipping_zip}}</p>
+						<p>{{usershippingdetails.shipping_state}} , {{usershippingdetails.shipping_country}}</p>
 					</div>
 					<div class="col-md-6"></div>
 				</div>

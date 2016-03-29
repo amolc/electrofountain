@@ -5,48 +5,51 @@ var env = require('./environment');
 var connection = env.Dbconnection;
 var shipping = CRUD(connection,'shipping_address');
 
-/*exports.updatebillingaddress = function(req,res){
+exports.updateshippingaddress = function(req,res){
+	console.log("req body:",req.body);
 		if(req.body.companyname == 'undefined' || req.body.companyname == 0)
 		{
 			req.body.companyname = "";
 		}
-		billingCRUD.update({
-				'id':req.body.userid,
-			},{
-				'first_name':req.body.first_name,
-				'last_name':req.body.last_name,
+		shipping.create({
+				'customer_id':req.body.userid,
+				'shipping_first_name':req.body.shipping_first_name,
+				'shipping_last_name':req.body.shipping_last_name,
+				'shipping_mobile_number':req.body.shipping_mobile_number,
+				'shipping_address':req.body.shipping_address,
+				'shipping_apartment':req.body.shipping_apartment,
+				'shipping_city':req.body.shipping_city,	
+				'shipping_state':req.body.shipping_state,
+				'shipping_country':req.body.shipping_country,
+				'shipping_zip':req.body.shipping_zip,
 				'company_name':req.body.company_name,
-				'address':req.body.address,
-				'city':req.body.city,
-				'state':req.body.state,
-				'country':req.body.country,
-				'zip':req.body.zip,
-				'mobile_number':req.body.mobile_number,
-				'apartment':req.body.apartment,
+				'created_on':env.timestamp(),				
 				'modified_on':env.timestamp()
 			},function(error, result) {
 			if (result) {
 				responsedata = {
 					status: true,
 					record: result,
-					message: 'Billing Address successfully Updated'
+					message: 'Shipping Address successfully Added'
 				}
+				console.log("error:",error);
 				res.jsonp(responsedata);
 			} else {
 				responsedata = {
 				status: false,
 				record: result,
-				message: 'Billing Address Failed to Update'
+				message: 'Shipping Address Failed to Add'
 				}
+				console.log("error:",error);
 				res.jsonp(responsedata);
 			}
 		});
 }
 
-exports.getuserdetails = function(req,res){
+exports.getshippingaddress = function(req,res){
   	 
-  	  billingCRUD.load({
-  	  	'id': req.body.userid
+  	  shipping.load({
+  	  	'customer_id': req.body.userid
   	  },function(error, result) {
 	    if (result) {
 	      responsedata = {
@@ -54,6 +57,7 @@ exports.getuserdetails = function(req,res){
 	        record: result,
 	        message: 'User Details'
 	      }
+	      console.log("error:",error);
 	      res.jsonp(responsedata);
 	    } else {
 	      responsedata = {
@@ -61,7 +65,8 @@ exports.getuserdetails = function(req,res){
 	        record: result,
 	        message: 'User Details Failed to Get..'
 	      }
+	      console.log("error:",error);
 	      res.jsonp(responsedata);
 	    }
   });
-}*/
+}
