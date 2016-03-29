@@ -81,8 +81,9 @@ app.post('/api/login', userlogin.login);
 app.post('/api/signup',userlogin.signup);
 app.post('/api/updatebillingaddress',billingApi.updatebillingaddress);
 app.post('/api/getuserdetails',billingApi.getuserdetails);
-app.post('/api/updateshippingaddress', shippingApi.updateshippingaddress);
+app.post('/api/addshippingaddress', shippingApi.addshippingaddress);
 app.post('/api/getshippingaddress',shippingApi.getshippingaddress);
+app.post('/api/updateshippingaddress',shippingApi.updateshippingaddress);
 
 /*app.post('/api/addtodos',todos.addtodos);
 app.post('/api/gettodos',todos.gettodos);

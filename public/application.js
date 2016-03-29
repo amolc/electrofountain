@@ -48,7 +48,7 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider','storePro
     })
 
     .state('editshippingaddress', {
-      url: '/editshippingaddress',
+      url: '/editshippingaddress/:customer_id',
       templateUrl:'templates/shipping_address.html'
     })
 
@@ -71,6 +71,7 @@ angular.module('DemoApp').controller('MainController', [
   'store',
   function($scope, $http, $stateParams, $location, $rootScope,$state, $timeout,store) {
 
+    $scope.stateParams = $stateParams;
     $scope.init = function() {
 
        $scope.userSession = store.get('userSession') || {};
@@ -150,10 +151,8 @@ angular.module('DemoApp').controller('MainController', [
       @lastDate
     */
     $scope.signup = function(userinfo,valid){
-      console.log("userinfo:",userinfo);
       if(valid){
          $http.post(baseUrl + 'signup', userinfo).success(function(res,req){
-            console.log("res:",res);
             if(res.status == true){
                   $scope.signupmsg = 'User Created Successfully. Please login .';
                   $scope.showsignmsg = true;
@@ -168,7 +167,6 @@ angular.module('DemoApp').controller('MainController', [
               
             }
             else{
-              console.log("error");
                   $scope.signuperrmsg = res.message;
                   $scope.showsignuperrmsg = true;
                   
@@ -198,9 +196,7 @@ angular.module('DemoApp').controller('MainController', [
      $scope.Billing_address = function(billingadd,valid){
       if(valid){
             billingadd.userid = $scope.userSession.userid;
-            console.log("billingadd:",billingadd);
          $http.post(baseUrl + 'updatebillingaddress', billingadd).success(function(res,req){
-            console.log("res:",res);
             if(res.status == true){
                   $scope.billingadd_success= 'Billing Address Updated Successfully';
                   $scope.showbillingadd_success = true;
@@ -215,7 +211,6 @@ angular.module('DemoApp').controller('MainController', [
               
             }
             else{
-              console.log("error");
                   $scope.billingadd_error = res.message;
                   $scope.showbillingadd_error = true;
                   
@@ -263,26 +258,42 @@ angular.module('DemoApp').controller('MainController', [
           userid:$scope.userSession.userid
         }
           $http.post(baseUrl  + 'getshippingaddress', customer_id).success(function(res,req){
-            
             $scope.usershippingdetails = res.record[0];
-            //console.log("res:", $scope.usershippingdetails);
           }).error(function(){
             console.log("Connection Problem!!!");
           });
     }
 
-    
-     /**
+
+     
+
+  /**
+    @function for addupdate_shippingaddress
+    @param {int}
+    @author sameer vedpathak
+    @initialDate
+    @lastDate
+  */
+   
+    $scope.addupdate_shippingaddress = function(shipping_address,valid) {
+      if(valid){
+        if ($scope.stateParams.customer_id == '')
+             $scope.add_shipping_details(shipping_address);
+        if ($scope.stateParams.customer_id != '')
+            $scope.update_shipping_details(shipping_address);
+      }
+    };
+
+    /**
       @function add_shipping_details
       @author Sameer Vedpathak
       @initialDate 
       @lastDate
     */
-    $scope.add_shipping_details = function(shipping_address,valid) {
-    if(valid){
-      shipping_address.userid = $scope.userSession.userid;  
+    $scope.add_shipping_details = function(shipping_address) {
       
-        $http.post(baseUrl  + 'updateshippingaddress', shipping_address).success(function(res,req){
+      shipping_address.userid = $scope.userSession.userid;  
+        $http.post(baseUrl  + 'addshippingaddress', shipping_address).success(function(res,req){
           if(res.status == true){
             $scope.ship_add_success = 'Shipping Address Successfully Added';
             $scope.showshipaddmsg = true;
@@ -300,8 +311,30 @@ angular.module('DemoApp').controller('MainController', [
         }).error(function(){
           console.log("Connection Problem!!!");
         });
-      } 
+     /* } */
   }
+
+   $scope.update_shipping_details = function(shipping_address) {
+      $http.post(baseUrl + 'updateshippingaddress' , shipping_address).success(function(res,req){
+        if(res.status == true){
+            $scope.getshippingaddress();
+            $scope.ship_add_upt_success = 'Shipping Address Info Updated';
+            $scope.showshipaddupdtmsg = true;
+            // Simulate 2 seconds loading delay
+            $timeout(function() {
+                // Loadind done here - Show message for 3 more seconds.
+                $timeout(function() {
+                  $scope.showshipaddupdtmsg = false;
+                }, 3000);
+              document.getElementById("shipping_address_frm").reset();
+              $state.go('profileview');
+            }, 2000);
+          }
+      }).error(function(){
+        console.log("Connection Problem !!!");
+      });
+
+   };
 
   }
 ]);
