@@ -69,8 +69,8 @@ var userlogin = require('./api/userlogin.js');
 var todos = require('./api/todos.js');
 var device_register = require('./api/device_register.js');
 var sendpushnotification = require('./api/sendpushnotification.js');
-var billingApi = require('./api/billing.js');
-var shippingApi = require('./api/shipping.js');
+var billing = require('./api/billing.js');
+var shipping = require('./api/shipping.js');
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -82,12 +82,12 @@ app.all('*', function(req, res, next) {
 
 
 app.use('/api/userlogin', userlogin);
+app.use('/api/billing',billing);
+app.use('/api/shipping',shipping);
 
-app.post('/api/updatebillingaddress',billingApi.updatebillingaddress);
-app.post('/api/getuserdetails',billingApi.getuserdetails);
-app.post('/api/addshippingaddress', shippingApi.addshippingaddress);
+/*app.post('/api/addshippingaddress', shippingApi.addshippingaddress);
 app.post('/api/getshippingaddress',shippingApi.getshippingaddress);
-app.post('/api/updateshippingaddress',shippingApi.updateshippingaddress);
+app.post('/api/updateshippingaddress',shippingApi.updateshippingaddress);*/
 
 /*app.post('/api/addtodos',todos.addtodos);
 app.post('/api/gettodos',todos.gettodos);

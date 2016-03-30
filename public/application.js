@@ -196,7 +196,7 @@ angular.module('DemoApp').controller('MainController', [
      $scope.Billing_address = function(billingadd,valid){
       if(valid){
             billingadd.userid = $scope.userSession.userid;
-         $http.post(baseUrl + 'updatebillingaddress', billingadd).success(function(res,req){
+         $http.post(baseUrl + 'billing/updatebillingaddress', billingadd).success(function(res,req){
             if(res.status == true){
                   $scope.billingadd_success= 'Billing Address Updated Successfully';
                   $scope.showbillingadd_success = true;
@@ -240,7 +240,7 @@ angular.module('DemoApp').controller('MainController', [
           userid : $scope.userSession.userid
         };
       
-      $http.post(baseUrl + 'getuserdetails', user_id).success(function(res,req){
+      $http.post(baseUrl + 'billing/getuserdetails', user_id).success(function(res,req){
         $scope.bill_add_info = res.record[0];
       });
 
@@ -257,7 +257,7 @@ angular.module('DemoApp').controller('MainController', [
         var customer_id  = {
           userid:$scope.userSession.userid
         }
-          $http.post(baseUrl  + 'getshippingaddress', customer_id).success(function(res,req){
+          $http.post(baseUrl  + 'shipping/getshippingaddress', customer_id).success(function(res,req){
             $scope.usershippingdetails = res.record[0];
           }).error(function(){
             console.log("Connection Problem!!!");
@@ -293,7 +293,7 @@ angular.module('DemoApp').controller('MainController', [
     $scope.add_shipping_details = function(shipping_address) {
       
       shipping_address.userid = $scope.userSession.userid;  
-        $http.post(baseUrl  + 'addshippingaddress', shipping_address).success(function(res,req){
+        $http.post(baseUrl  + 'shipping/addshippingaddress', shipping_address).success(function(res,req){
           if(res.status == true){
             $scope.ship_add_success = 'Shipping Address Successfully Added';
             $scope.showshipaddmsg = true;
@@ -315,7 +315,7 @@ angular.module('DemoApp').controller('MainController', [
   }
 
    $scope.update_shipping_details = function(shipping_address) {
-      $http.post(baseUrl + 'updateshippingaddress' , shipping_address).success(function(res,req){
+      $http.post(baseUrl + 'shipping/updateshippingaddress' , shipping_address).success(function(res,req){
         if(res.status == true){
             $scope.getshippingaddress();
             $scope.ship_add_upt_success = 'Shipping Address Info Updated';

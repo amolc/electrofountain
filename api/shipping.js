@@ -1,12 +1,12 @@
 var express = require('express');
+var router = express.Router();
 var mysql = require('mysql');
 var CRUD = require('mysql-crud');
 var env = require('./environment');
 var connection = env.Dbconnection;
 var shipping = CRUD(connection,'shipping_address');
 
-exports.addshippingaddress = function(req,res){
-	console.log("req body:",req.body);
+router.post('/addshippingaddress', function(req, res) {
 		if(req.body.companyname == 'undefined' || req.body.companyname == 0)
 		{
 			req.body.companyname = "";
@@ -44,10 +44,9 @@ exports.addshippingaddress = function(req,res){
 				res.jsonp(responsedata);
 			}
 		});
-}
+});
 
-exports.getshippingaddress = function(req,res){
-  	 
+router.post('/getshippingaddress', function(req, res) {
   	  shipping.load({
   	  	'customer_id': req.body.userid
   	  },function(error, result) {
@@ -69,11 +68,9 @@ exports.getshippingaddress = function(req,res){
 	      res.jsonp(responsedata);
 	    }
   });
-}
+});
 
-
-exports.updateshippingaddress = function(req,res){
-	console.log("req body:",req.body);
+router.post('/updateshippingaddress', function(req, res) {
 		if(req.body.companyname == 'undefined' || req.body.companyname == 0)
 		{
 			req.body.companyname = "";
@@ -111,4 +108,6 @@ exports.updateshippingaddress = function(req,res){
 				res.jsonp(responsedata);
 			}
 		});
-}
+});
+
+module.exports = router;

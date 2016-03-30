@@ -1,11 +1,12 @@
 var express = require('express');
+var router = express.Router();
 var mysql = require('mysql');
 var CRUD = require('mysql-crud');
 var env = require('./environment');
 var connection = env.Dbconnection;
 var billingCRUD = CRUD(connection,'user');
 
-exports.updatebillingaddress = function(req,res){
+router.post('/updatebillingaddress', function(req, res) {
 		if(req.body.companyname == 'undefined' || req.body.companyname == 0)
 		{
 			req.body.companyname = "";
@@ -41,10 +42,10 @@ exports.updatebillingaddress = function(req,res){
 				res.jsonp(responsedata);
 			}
 		});
-}
+});
 
-exports.getuserdetails = function(req,res){
-  	 
+
+router.post('/getuserdetails', function(req, res) {
   	  billingCRUD.load({
   	  	'id': req.body.userid
   	  },function(error, result) {
@@ -64,4 +65,6 @@ exports.getuserdetails = function(req,res){
 	      res.jsonp(responsedata);
 	    }
   });
-}
+});
+
+module.exports = router;
