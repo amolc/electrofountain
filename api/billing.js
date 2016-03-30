@@ -7,6 +7,7 @@ var connection = env.Dbconnection;
 var billingCRUD = CRUD(connection,'user');
 
 router.post('/updatebillingaddress', function(req, res) {
+	console.log('update billing address',req.body);
 		if(req.body.companyname == 'undefined' || req.body.companyname == 0)
 		{
 			req.body.companyname = "";
