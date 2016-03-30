@@ -26,12 +26,13 @@
 						</div>
 					</div>
 					<div class="row" style="margin-top: 20px;">
-						<div class="col-md-1">
+						<!-- <div class="col-md-1">
 							<input type="number" step="1" min="" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" style="width:40px;margin-top: 9px">
-						</div>
-						<div class="col-md-5" style="margin-top: 2px;">
-							<div class="center homepage_cartbtn_margin"><a type="button" class="cart_btn_detailspage" style=" text-decoration: none;">Add to cart</a>
-							</div>
+						</div> -->
+						<div class="col-md-5">
+							<!-- <div class="center homepage_cartbtn_margin"><a type="button" class="cart_btn_detailspage" style=" text-decoration: none;">Add to cart</a>
+							</div> -->
+							 <ngcart-addtocart id={{item.id}} name={{item.name}} price={{item.price}} quantity={{item.quantity}} quantity-max={{item.quantity-max}}>Add to Cart</ngcart-addtocart>							 
 						</div>
 					</div>
 
@@ -69,7 +70,7 @@
 							<li>Visual Area: 69.60mm(L)×41.76mm(W)</li>
 							<li>Adjustable Brightness:0~230 nit, the interval of adjustment is 1%</li>
 							<li>5V85mA power consumption</li>
-						</ul> 
+						</ul>
 
 					<h5>Features of 2.8”:</h5>
 					<ul style="list-style-type:circle">
@@ -85,7 +86,7 @@
 						<li>Compatible with Raspberry Pi A+, B+ and Raspberry Pi 2.</li>
 						<li>Powered directly off the Raspberry Pi, no external power supply is required</li>
 						<li>Generic using for all Arduino or Raspberry Pi project.</li>
-					</ul> 
+					</ul>
 
 					<h5>Features of 2.4”:</h5>
 					<ul style="list-style-type:circle">
@@ -99,7 +100,7 @@
 						<li>Visual Area:36.72mm(L)×48.96mm(W)</li>
 						<li>Adjustable Brightness:0~180 nit, the interval of adjustment is 1%</li>
 						<li>5V90mA power conusmption</li>
-					</ul> 
+					</ul>
 				</div>
 				<div class="tab-pane fade" id="tab2" style="padding: 20px;">
 					<h5>Product Enquiry</h5>
@@ -127,7 +128,7 @@
 								<div class="form-group">
 									<textarea type="text" rows="2" cols="140"></textarea>
 								</div>
-								<input type="submit" id="send_product_enquiry" value="Send Enquiry" class="button">	
+								<input type="submit" id="send_product_enquiry" value="Send Enquiry" class="button">
 							</div>
 
 						</div>
@@ -144,7 +145,7 @@
 					<h5>Reviews</h5>
 					<p>There are no reviews yet.</p>
 					<p>Be the first to review “Nextion HMI TFT Intelligent LCD Touch Display Module”</p>
-					
+
 				</div>
 			</div>
 		</div>

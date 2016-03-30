@@ -1,0 +1,15 @@
+{
+  "name": "ElectroFountain",
+  "description": "E-commerce site",
+  "main": "",
+  "authors": [
+    "MIT"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/amolc/electrofountain",
+  "moduleType": [],
+  "private": true,
+  "dependencies": {
+    "ngCart": "ngcart#^1.0.0"
+  }
+}

@@ -3,19 +3,18 @@ var mysql = require('mysql');
 var http = require('http');
 
 var enviroment = {
-	Dbconnection : mysql.createPool({
-			database : 'electrofountain',
-		    user : 'ftdev',
-			password : '10gXWOqeaf',
-		    host :'apps.fountaintechies.com',
-	}),
+  Dbconnection: mysql.createPool({
+    database: 'electrofountain',
+    user: 'ftdev',
+    password: '10gXWOqeaf',
+    host: 'apps.fountaintechies.com',
+  }),
 
-	/** Function For Time stamp**/
-	timestamp: function() {
-      var UTCtimestamp = new Date();
-      return UTCtimestamp.getTime();
-    }
-}
+  /** Function For Time stamp**/
+  timestamp: function() {
+    var UTCtimestamp = new Date();
+    return UTCtimestamp.getTime();
+  }
+};
+
 module.exports = enviroment;
- 
-

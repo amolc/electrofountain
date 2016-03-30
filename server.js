@@ -36,10 +36,15 @@ var server = http.createServer(app);
 /*uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));*/
 
-app.use(logger('dev'));
+
+// uncomment if if want to log static content request
+//app.use(logger('dev'));
+
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'mobile')));
@@ -82,8 +87,8 @@ app.all('*', function(req, res, next) {
 
 
 app.use('/api/userlogin', userlogin);
-app.use('/api/billing',billing);
-app.use('/api/shipping',shipping);
+app.use('/api/billing', billing);
+app.use('/api/shipping', shipping);
 
 /*app.post('/api/addtodos',todos.addtodos);
 app.post('/api/gettodos',todos.gettodos);
@@ -135,9 +140,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -160,8 +163,6 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }

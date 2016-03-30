@@ -672,7 +672,7 @@ img {
 	overflow:hidden;
 	margin:20px auto;
 	text-align:left;
-	background:#fff;	
+	background:#fff;
 	-webkit-box-shadow: 0 0 4px -1px rgba(0,0,0,.2);
 	-moz-box-shadow: 0 0 4px -1px rgba(0,0,0,.2);
 	box-shadow: 0 0 4px -1px rgba(0,0,0,.2);
@@ -716,7 +716,7 @@ img {
 	float:left;
 	width: 80%;
 	padding: 0 10px;
-	
+
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -915,7 +915,7 @@ img {
 	color: #fff;
 	text-shadow: none;
 	font-weight: bold;
-	border: none;	
+	border: none;
 }
 
 .cart-nav li.cart-status a:hover {
@@ -925,10 +925,10 @@ img {
 .cart-nav li.cart-status span.amount {
 	display: inline-block;
 }
- 
-.cart-contents:before { 
+
+.cart-contents:before {
 	font-family: 'FontAwesome';
-	margin-right: .5em;	
+	margin-right: .5em;
 	display: inline-block;
 	font-family: FontAwesome;
 	font-style: normal;
@@ -1523,11 +1523,11 @@ ul.port li img {
 	-moz-box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.75);
 	-webkit-box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.75);
 	box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.75);
-	
+
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	
+
 	-webkit-transition: .3s ease-in-out;
 	-moz-transition: .3s ease-in-out;
 	-ms-transition: .3s ease-in-out;
@@ -1799,7 +1799,7 @@ ul#filter-nav li.current a {
 
 .nav-links .nav-next a:after {
 	content: "\f054";
-	right: 0;	
+	right: 0;
 }
 
 .nav-links a:hover .post-title,
@@ -1873,11 +1873,11 @@ ul.tag-list li a:active {
 	padding: 4px 12px;
 	background: #e0e0e0;
 	color: rgba(0,0,0,.87);
-	
+
 	-webkit-border-radius: 14px;
 	-moz-border-radius: 14px;
 	border-radius: 14px;
-	
+
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -2175,7 +2175,7 @@ p.logged-in-as {
 	width: 33.33%;
 	margin: 0;
 	padding: 0 10px;
-	
+
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -2262,7 +2262,7 @@ h3.sc-title {
 
 #secondary ul ul li {
 	padding-left:15px;
-	background:url(images/list_arrow.gif) 4px 14px no-repeat
+/*background:url(images/list_arrow.gif) 4px 14px no-repeat*/*/
 }
 
 #secondary ul ul li:last-child {
@@ -2315,11 +2315,11 @@ h3.sc-title {
 	height: 56px;
 	background: #424242;
 	color: #fff;
-	
+
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	
+
 	-webkit-transition: .3s;
 	-moz-transition: .3s;
 	-ms-transition: .3s;
