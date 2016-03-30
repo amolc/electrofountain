@@ -80,7 +80,7 @@ angular.module('DemoApp').controller('MainController', [
 
     $scope.stateParams = $stateParams;
     $scope.init = function() {
-      console.log(ngCart.getCart().items);
+    //  console.log(ngCart.getCart().items);
       $scope.item = {'id':'E11',
                       'name':'Electric Key',
                       'price':'150',
@@ -88,7 +88,7 @@ angular.module('DemoApp').controller('MainController', [
                       'quantity-max':3,
                       'data':{'img_path':'','img_name':''}};
       //console.log($scope.item);
-      console.log(ngCart.getTotalItems());
+      //console.log(ngCart.getTotalItems());
       $scope.total_length = ngCart.getTotalItems();
       $scope.userSession = store.get('userSession') || {};
       if ($scope.userSession) {

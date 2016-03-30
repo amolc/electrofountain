@@ -8,6 +8,7 @@ var userCRUD = CRUD(connection, 'user');
 var md5 = require('md5');
 
 router.post('/login', function(req, res) {
+  console.log('Request ',req.body);
   var email = req.body.user_email;
   var password = md5(req.body.user_password);
   userCRUD.load({
