@@ -85,10 +85,6 @@ app.use('/api/userlogin', userlogin);
 app.use('/api/billing',billing);
 app.use('/api/shipping',shipping);
 
-/*app.post('/api/addshippingaddress', shippingApi.addshippingaddress);
-app.post('/api/getshippingaddress',shippingApi.getshippingaddress);
-app.post('/api/updateshippingaddress',shippingApi.updateshippingaddress);*/
-
 /*app.post('/api/addtodos',todos.addtodos);
 app.post('/api/gettodos',todos.gettodos);
 app.post('/api/gettododetails',todos.gettododetails);
