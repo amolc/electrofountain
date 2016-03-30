@@ -1,4 +1,5 @@
 var express = require('express');
+var router = express.Router();
 var http = require('http');
 var CRUD = require('mysql-crud');
 var env = require('./environment');
@@ -6,7 +7,7 @@ var connection = env.Dbconnection;
 var userCRUD = CRUD(connection,'user');
 var md5 = require('md5');
 
-exports.login = function(req,res){
+router.post('/login', function(req, res) {
   	  var email = req.body.user_email;
       var password = md5(req.body.user_password);
       userCRUD.load({
@@ -29,9 +30,9 @@ exports.login = function(req,res){
           res.jsonp(resdata);
       }
 	});
-}
+});
 
-exports.signup = function(req,res){
+router.post('/signup', function(req, res) {
       var password = md5(req.body.user_password); 
       userCRUD.load({
         email_id : req.body.user_email,
@@ -48,8 +49,6 @@ exports.signup = function(req,res){
         }else{
 
         userCRUD.create({
-            /*'first_name': req.body.user_fname,
-            'last_name': req.body.user_lname,*/
             'email_id': req.body.user_email,
             'password': password,
             'created_on':env.timestamp(),
@@ -75,4 +74,6 @@ exports.signup = function(req,res){
           
       }
   });
-}
+});
+
+module.exports = router;

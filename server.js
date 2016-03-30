@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 var express = require('express');
+var router = express.Router();
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var router = express.Router();
+
 
 
 var app = express();
@@ -71,14 +72,17 @@ var sendpushnotification = require('./api/sendpushnotification.js');
 var billingApi = require('./api/billing.js');
 var shippingApi = require('./api/shipping.js');
 
-app.use(function(req, res, next) {
+app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
   next();
 });
 
-app.post('/api/login', userlogin.login);
-app.post('/api/signup',userlogin.signup);
+
+app.use('/api/userlogin', userlogin);
+
 app.post('/api/updatebillingaddress',billingApi.updatebillingaddress);
 app.post('/api/getuserdetails',billingApi.getuserdetails);
 app.post('/api/addshippingaddress', shippingApi.addshippingaddress);

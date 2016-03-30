@@ -91,7 +91,7 @@ angular.module('DemoApp').controller('MainController', [
 
     $scope.userlogin = function(user,valid) {
       if(valid){
-          $http.post(baseUrl + 'login',user).success(function(res, req) {
+          $http.post(baseUrl + 'userlogin/login',user).success(function(res, req) {
             //console.log("User Details:",res);
             if (res.status == true) {
               var userSession = {
@@ -152,7 +152,7 @@ angular.module('DemoApp').controller('MainController', [
     */
     $scope.signup = function(userinfo,valid){
       if(valid){
-         $http.post(baseUrl + 'signup', userinfo).success(function(res,req){
+         $http.post(baseUrl + 'userlogin/signup', userinfo).success(function(res,req){
             if(res.status == true){
                   $scope.signupmsg = 'User Created Successfully. Please login .';
                   $scope.showsignmsg = true;
