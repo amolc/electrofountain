@@ -35,7 +35,7 @@
     <script src="lib/angular-messages.min.js"></script>
     <script src="lib/moment-with-locales.min.js"></script>
     <script src="lib/jquery.js"></script>
-
+    <script src="lib/underscore.js"></script>
     <script src="config/config.js"></script>
     <script type="text/javascript" src="application.js"></script>
     <script type="text/javascript" src="lib/bootstrap.js"></script>
@@ -950,7 +950,7 @@
                 </span>
                 <a class="btn btn-sm btn-primary" ng-click="ngCart.addItem(id, name, price, q, data)" ng-transclude></a>
               </div>
-              <br />
+              <br/>
               <mark ng-show="inCart()">
                 This item is in your cart.
                 <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>

@@ -7,7 +7,7 @@ var ApplicationModuleName = 'DemoApp';
 
 
 // Create the main application
-var SampleApplicationModule = angular.module('DemoApp', ['ui.router', 'angular-storage', 'ngMessages', 'ngMaterial', 'ngMaterialDatePicker','ngCart','angular-storage']);
+var SampleApplicationModule = angular.module('DemoApp', ['ui.router', 'angular-storage', 'ngMessages', 'ngMaterial', 'ngMaterialDatePicker', 'ngCart', 'angular-storage']);
 
 SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', 'storeProvider', function($urlRouterProvider, $stateProvider, storeProvider) {
   //storeProvider.set('sessionStorage','hi');
@@ -49,16 +49,16 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', 'storePr
   })
 
   .state('editshippingaddress', {
-    url: '/editshippingaddress/:customer_id',
-    templateUrl: 'templates/shipping_address.html'
-  })
-  .state('cart', {
-    url: '/cart',
-    templateUrl: 'templates/cart_final.html'
-  })
+      url: '/editshippingaddress/:customer_id',
+      templateUrl: 'templates/shipping_address.html'
+    })
+    .state('cart', {
+      url: '/cart',
+      templateUrl: 'templates/cart_final.html'
+    })
 
   .state('productdetailspage', {
-    url: '/productdetailspage',
+    url: '/productdetailspage/:product_id',
     templateUrl: 'templates/product_details_page.html'
   });
 
@@ -75,26 +75,83 @@ angular.module('DemoApp').controller('MainController', [
   '$timeout',
   'store',
   'ngCart',
-  function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, store,ngCart) {
-
+  function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, store, ngCart) {
 
     $scope.stateParams = $stateParams;
-    $scope.init = function() {
+
+    if ($scope.stateParams.product_id) {
+      $scope.stateParams.product_id = parseInt($scope.stateParams.product_id);
+      var extract = _.where($scope.products, {
+        'id': $scope.stateParams.product_id
+      });
+      $scope.singleProduct = extract[0];
+    }
     //  console.log(ngCart.getCart().items);
-      $scope.item = {'id':'E11',
-                      'name':'Electric Key',
-                      'price':'150',
-                      'quantity':5,
-                      'quantity-max':3,
-                      'data':{'img_path':'','img_name':''}};
-      //console.log($scope.item);
-      //console.log(ngCart.getTotalItems());
-      $scope.total_length = ngCart.getTotalItems();
+    $scope.item = {
+      'id': 'E11',
+      'name': 'Electric Key',
+      'price': '150',
+      'quantity': 5,
+      'quantity-max': 3
+    };
+
+    $scope.products = [{
+      'id': 1,
+      'name': 'LCD DISPLAY',
+      'description': 'Nextion HMI TFT Intelligent LCD Touch Display Module',
+      'image_name': 'nx4024t032_1_-150x150.jpg',
+      'image_name_350': 'nx4024t032_1_-350x350.jpg',
+      'image_path': 'images',
+      'price': '150',
+      'quantity': 1,
+      'quantity-max': 3,
+      data: {}
+    }, {
+      'id': 2,
+      'name': 'POWER TRANFER',
+      'description': '1.5A Current Wireless Power Transfer Supply Pair Kit',
+      'image_name': '1.5A-Current-Wireless-Power-Transfer-Kit-02-150x150.jpg',
+      'image_name_350': '1.5A-Current-Wireless-Power-Transfer-Kit-02-350x350.jpg',
+      'image_path': 'images',
+      'price': '150',
+      'quantity': 1,
+      'quantity-max': 3,
+      'data': {}
+    }, {
+      'id': 3,
+      'name': 'WIFI MODULE',
+      'description': 'Super-Mini360 DC-DC Synchronous-rectified Buck Step-Down Module',
+      'image_name': 'Super-Mini360-DC-DC-Synchronous-rectified-Buck-Step-Down-Module-02-150x150.jpg',
+      'image_name_350': 'Super-Mini360-DC-DC-Synchronous-rectified-Buck-Step-Down-Module-02-350x350.jpg',
+      'image_path': 'images',
+      'price': '150',
+      'quantity': 1,
+      'quantity-max': 3,
+      'data': {}
+    }, {
+      'id': 4,
+      'name': 'BUCK STEP-DOWN',
+      'description': 'ESP8266 Wifi Module [Various Package]',
+      'image_name': 'MT3608-2A-DC-DC-Boost-Step-up-ADJ-Power-Module-150x150.jpg',
+      'image_name_350': 'ESP8266-IO-SMD-01-350x350.jpg',
+      'image_path': 'images',
+      'price': '150',
+      'quantity': 1,
+      'quantity-max': 3,
+      'data': {}
+    }];
+
+    //console.log($scope.item);
+    //console.log(ngCart.getTotalItems());
+    $scope.total_length = ngCart.getTotalItems();
+
+    $scope.init = function() {
       $scope.userSession = store.get('userSession') || {};
       if ($scope.userSession) {
         $scope.userdetails();
         //$scope.getshippingaddress();
       }
+
     };
 
     /*

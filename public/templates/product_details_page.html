@@ -1,15 +1,17 @@
-<div>
-	<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="col-md-6"><img src="images/nextion_hmi.jpg"/></div>
-			<div class="col-md-4">
-				<h2 style="font-size: 25px">Nextion HMI TFT Intelligent LCD Touch Display Module</h2>
-				<div class="div_comman_margin">
-					<label >$12.40–$20.60</label>
-				</div>
-				<div class="div_comman_margin">
-					<div class="row">
+<div ng-controller="MainController">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6"><img src="images/{{singleProduct.image_name_350}}"/></div>
+        <div class="col-md-4">
+          <h2 style="font-size: 25px">{{singleProduct.description}}</h2>
+          <div class="div_comman_margin">
+            <label >{{singleProduct.price | currency }}</label>
+          </div>
+          <div class="div_comman_margin">
+
+            <!--     SIZE DROPDOWN   -->
+            <!-- <div class="row">
 						<div class="col-md-3">
 							<label style="padding-top: 10px;">Size</label>
 						</div>
@@ -24,131 +26,143 @@
 								</ul>
 							</div>
 						</div>
-					</div>
-					<div class="row" style="margin-top: 20px;">
-						<!-- <div class="col-md-1">
+					</div> -->
+            <div class="row" style="margin-top: 20px;">
+              <!-- <div class="col-md-1">
 							<input type="number" step="1" min="" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" style="width:40px;margin-top: 9px">
 						</div> -->
-						<div class="col-md-5">
-							<!-- <div class="center homepage_cartbtn_margin"><a type="button" class="cart_btn_detailspage" style=" text-decoration: none;">Add to cart</a>
+              <div class="col-md-5">
+                <!-- <div class="center homepage_cartbtn_margin"><a type="button" class="cart_btn_detailspage" style=" text-decoration: none;">Add to cart</a>
 							</div> -->
-							 <ngcart-addtocart id={{item.id}} name={{item.name}} price={{item.price}} quantity={{item.quantity}} quantity-max={{item.quantity-max}}>Add to Cart</ngcart-addtocart>							 
-						</div>
-					</div>
+                <ngcart-addtocart id={{singleProduct.id}} name={{singleProduct.name}} price={{singleProduct.price}} quantity={{singleProduct.quantity}} quantity-max={{singleProduct.quantity-max}}>Add to Cart</ngcart-addtocart>
+              </div>
+            </div>
 
-				</div>
-				<div class="homepage_cartbtn_margin"><a type="button" style="background: #efefef;padding: 5px; text-decoration: none ; color: black;">Add to wishlist</a></div>
-				</div>
-			</div>
-			<div class="col-md-2"></div>
-	</div>
+          </div>
+          <div class="homepage_cartbtn_margin">
+            <a type="button" style="background: #efefef;padding: 5px; text-decoration: none ; color: black;">Add to wishlist</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
 
-	<div class="row">
-		<div class="col-md-10">
-			<ul class="nav nav-tabs">
-				<li class="active"><a href="productdetailspage#tab1" data-toggle="tab">Description</a></li>
-				<li><a href="productdetailspage#tab2" data-toggle="tab">Product Enquiry</a></li>
-				<li><a href="productdetailspage#tab3" data-toggle="tab">Additional Information</a></li>
-				<li><a href="productdetailspage#tab4" data-toggle="tab">Reviews</a></li>
-			</ul>
+    <div class="row">
+      <div class="col-md-10">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="productdetailspage#tab1" data-toggle="tab">Description</a>
+          </li>
+          <li>
+            <a href="productdetailspage#tab2" data-toggle="tab">Product Enquiry</a>
+          </li>
+          <li>
+            <a href="productdetailspage#tab3" data-toggle="tab">Additional Information</a>
+          </li>
+          <li>
+            <a href="productdetailspage#tab4" data-toggle="tab">Reviews</a>
+          </li>
+        </ul>
 
-			<div class="tab-content">
-				<div class="tab-pane fade in active" id="tab1" style="padding: 20px;">
-					<h5>Product Description</h5>
-					<p>Nextion is a Seamless Human Machine Interface (HMI) solution that provides a control and visualisation interface between a human and a process, machine, application or appliance. It is the best solution to replace the traditional LCD and LED Nixie tube.</p>
-					<p>This solution includes hardware part – a series of TFT boards and software part – Nextion editor. Nextion TFT board uses only one serial port to do communicating. Let you get rid of the wiring trouble. We notice that most engineers spend much time in application development but get unpleasant results. In this situation, Nextion editor has mass components such as button, text, progress bar, slider, instrument panel etc. to enrich your interface design. And the drag-and-drop function ensures that you spend less time in programming, which will reduce your 99% development workloads. With the help of this WYSIWYG editor, GUI designing is a piece of cake.</p>
-					<p>It’s easy to adapt Nextion family HMI to existing projects, you just need to provide it a UART.</p>
-					<p>Package include: a Nextion 3.2” display, a wire, a power supply test board</p>
-					<h5>Features of 3.2”:</h5>
-						<ul style="list-style-type:circle">
-							<li>400 x 240 Resolution</li>
-							<li>RGB 65K true to life colours</li>
-							<li>TFT Screen with integrated 4-wire Resistive Touch Panel</li>
-							<li>Easy 4 pin interface to any TTL Serial Host</li>
-							<li>4M Flash memory for User Application Code and Data</li>
-							<li>On board micro-SD card for firmware upgrade</li>
-							<li>Visual Area: 69.60mm(L)×41.76mm(W)</li>
-							<li>Adjustable Brightness:0~230 nit, the interval of adjustment is 1%</li>
-							<li>5V85mA power consumption</li>
-						</ul>
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="tab1" style="padding: 20px;">
+            <h5>Product Description</h5>
+            <p>Nextion is a Seamless Human Machine Interface (HMI) solution that provides a control and visualisation interface between a human and a process, machine, application or appliance. It is the best solution to replace the traditional LCD and LED Nixie tube.</p>
+            <p>This solution includes hardware part – a series of TFT boards and software part – Nextion editor. Nextion TFT board uses only one serial port to do communicating. Let you get rid of the wiring trouble. We notice that most engineers spend much time in application development but get unpleasant results. In this situation, Nextion editor has mass components such as button, text, progress bar, slider, instrument panel etc. to enrich your interface design. And the drag-and-drop function ensures that you spend less time in programming, which will reduce your 99% development workloads. With the help of this WYSIWYG editor, GUI designing is a piece of cake.</p>
+            <p>It’s easy to adapt Nextion family HMI to existing projects, you just need to provide it a UART.</p>
+            <p>Package include: a Nextion 3.2” display, a wire, a power supply test board</p>
+            <h5>Features of 3.2”:</h5>
+            <ul style="list-style-type:circle">
+              <li>400 x 240 Resolution</li>
+              <li>RGB 65K true to life colours</li>
+              <li>TFT Screen with integrated 4-wire Resistive Touch Panel</li>
+              <li>Easy 4 pin interface to any TTL Serial Host</li>
+              <li>4M Flash memory for User Application Code and Data</li>
+              <li>On board micro-SD card for firmware upgrade</li>
+              <li>Visual Area: 69.60mm(L)×41.76mm(W)</li>
+              <li>Adjustable Brightness:0~230 nit, the interval of adjustment is 1%</li>
+              <li>5V85mA power consumption</li>
+            </ul>
 
-					<h5>Features of 2.8”:</h5>
-					<ul style="list-style-type:circle">
-						<li>320 x 240 Resolution
-						<li>RGB 65K true to life colours</li>
-						<li>TFT Screen with integrated 4-wire Resistive Touch Panel</li>
-						<li>Easy 4 pin interface to any TTL Serial Host</li>
-						<li>4M Flash memory for User Application Code and Data</li>
-						<li>On board micro-SD card for firmware upgrade</li>
-						<li>Visual Area:57.6mm(L)×43.2mm(W)</li>
-						<li>Adjustable Brightness:0~180 nit, the interval of adjustment is 1%</li>
-						<li>5V65mA power conusmption</li>
-						<li>Compatible with Raspberry Pi A+, B+ and Raspberry Pi 2.</li>
-						<li>Powered directly off the Raspberry Pi, no external power supply is required</li>
-						<li>Generic using for all Arduino or Raspberry Pi project.</li>
-					</ul>
+            <h5>Features of 2.8”:</h5>
+            <ul style="list-style-type:circle">
+              <li>320 x 240 Resolution
+              <li>RGB 65K true to life colours</li>
+              <li>TFT Screen with integrated 4-wire Resistive Touch Panel</li>
+              <li>Easy 4 pin interface to any TTL Serial Host</li>
+              <li>4M Flash memory for User Application Code and Data</li>
+              <li>On board micro-SD card for firmware upgrade</li>
+              <li>Visual Area:57.6mm(L)×43.2mm(W)</li>
+              <li>Adjustable Brightness:0~180 nit, the interval of adjustment is 1%</li>
+              <li>5V65mA power conusmption</li>
+              <li>Compatible with Raspberry Pi A+, B+ and Raspberry Pi 2.</li>
+              <li>Powered directly off the Raspberry Pi, no external power supply is required</li>
+              <li>Generic using for all Arduino or Raspberry Pi project.</li>
+            </ul>
 
-					<h5>Features of 2.4”:</h5>
-					<ul style="list-style-type:circle">
-						<li>320 x 240 Resolution
-						<li>Compatible with Raspberry Pi A+, B+ and Raspberry Pi 2</li>
-						<li>RGB 65K true to life colours</li>
-						<li>TFT Screen with integrated 4-wire Resistive Touch Panel</li>
-						<li>Easy 4 pin interface to any TTL Serial Host</li>
-						<li>4M Flash memory for User Application Code and Data</li>
-						<li>On board micro-SD card for firmware upgrade</li>
-						<li>Visual Area:36.72mm(L)×48.96mm(W)</li>
-						<li>Adjustable Brightness:0~180 nit, the interval of adjustment is 1%</li>
-						<li>5V90mA power conusmption</li>
-					</ul>
-				</div>
-				<div class="tab-pane fade" id="tab2" style="padding: 20px;">
-					<h5>Product Enquiry</h5>
-					<form>
-						<div class="row" >
-							<div class="col-md-6 ">
-								<div class="form-group">
-									<label for="firstname">Name</label>
-									<input type="text" class="form-control billing_frm_input" placeholder="Enter First Name" name= "first_name" tabindex="2" required>
-									<span>
-										<div data-ng-messages="billing_addfrm.$submitted && billing_addfrm.first_name.$error" role="alert" class="error_msg">
-											<div data-ng-message="required">Please First Name</div>
-										</div>
-									</span>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="exampleInputPassword1">Email Address</label>
-									<input type="email" class="form-control billing_frm_input" placeholder="Enter Email Address" name="email" tabindex="4" required>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<label for="enquiry">Enquiry</label>
-								<div class="form-group">
-									<textarea type="text" rows="2" cols="140"></textarea>
-								</div>
-								<input type="submit" id="send_product_enquiry" value="Send Enquiry" class="button">
-							</div>
+            <h5>Features of 2.4”:</h5>
+            <ul style="list-style-type:circle">
+              <li>320 x 240 Resolution
+              <li>Compatible with Raspberry Pi A+, B+ and Raspberry Pi 2</li>
+              <li>RGB 65K true to life colours</li>
+              <li>TFT Screen with integrated 4-wire Resistive Touch Panel</li>
+              <li>Easy 4 pin interface to any TTL Serial Host</li>
+              <li>4M Flash memory for User Application Code and Data</li>
+              <li>On board micro-SD card for firmware upgrade</li>
+              <li>Visual Area:36.72mm(L)×48.96mm(W)</li>
+              <li>Adjustable Brightness:0~180 nit, the interval of adjustment is 1%</li>
+              <li>5V90mA power conusmption</li>
+            </ul>
+          </div>
+          <div class="tab-pane fade" id="tab2" style="padding: 20px;">
+            <h5>Product Enquiry</h5>
+            <form>
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="form-group">
+                    <label for="firstname">Name</label>
+                    <input type="text" class="form-control billing_frm_input" placeholder="Enter First Name" name="first_name" tabindex="2" required>
+                    <span>
+                      <div data-ng-messages="billing_addfrm.$submitted && billing_addfrm.first_name.$error" role="alert" class="error_msg">
+                        <div data-ng-message="required">Please First Name</div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Email Address</label>
+                    <input type="email" class="form-control billing_frm_input" placeholder="Enter Email Address" name="email" tabindex="4" required>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <label for="enquiry">Enquiry</label>
+                  <div class="form-group">
+                    <textarea type="text" rows="2" cols="140"></textarea>
+                  </div>
+                  <input type="submit" id="send_product_enquiry" value="Send Enquiry" class="button">
+                </div>
 
-						</div>
-					</form>
-				</div>
-				<div class="tab-pane fade" id="tab3" style="padding: 20px;">
-					<h5>Additional Information</h5>
-					<div class="row">
-						<div class="col-md-2"><b>Size</b></div>
-						<div class="col-md-6">3.2”, 2.4”, 2.8”</div>
-					</div>
-				</div>
-				<div class="tab-pane fade" id="tab4" style="padding: 20px;">
-					<h5>Reviews</h5>
-					<p>There are no reviews yet.</p>
-					<p>Be the first to review “Nextion HMI TFT Intelligent LCD Touch Display Module”</p>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="tab3" style="padding: 20px;">
+            <h5>Additional Information</h5>
+            <div class="row">
+              <div class="col-md-2">
+                <b>Size</b>
+              </div>
+              <div class="col-md-6">3.2”, 2.4”, 2.8”</div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab4" style="padding: 20px;">
+            <h5>Reviews</h5>
+            <p>There are no reviews yet.</p>
+            <p>Be the first to review “Nextion HMI TFT Intelligent LCD Touch Display Module”</p>
 
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
