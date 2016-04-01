@@ -7,10 +7,10 @@ var ApplicationModuleName = 'DemoApp';
 
 
 // Create the main application
-var SampleApplicationModule = angular.module('DemoApp', ['ui.router', 'angular-storage', 'ngMessages', 'ngMaterial', 'ngMaterialDatePicker', 'ngCart', 'angular-storage']);
+var SampleApplicationModule = angular.module('DemoApp', ['ui.router', 'angular-storage', 'ngMessages', 'ngMaterial', 'ngMaterialDatePicker', 'ngCart', 'angular-storage', 'ngCookies']);
 
 SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', 'storeProvider', function($urlRouterProvider, $stateProvider, storeProvider) {
-  //storeProvider.set('sessionStorage','hi');
+
   $urlRouterProvider.otherwise('/home');
   $stateProvider
     .state('signin', {
@@ -75,9 +75,21 @@ angular.module('DemoApp').controller('MainController', [
   '$timeout',
   'store',
   'ngCart',
-  function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, store, ngCart) {
+  '$cookieStore',
+  function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, store, ngCart, $cookieStore) {
 
     $scope.stateParams = $stateParams;
+    //  console.log(store.get('userSession'));
+
+    $scope.init = function() {
+      $scope.userSession = $cookieStore.get('userSession') || {};
+      //console.log($scope.userSession);
+      if ($scope.userSession) {
+        $scope.userdetails();
+        //$scope.getshippingaddress();
+      }
+    };
+
 
     if ($scope.stateParams.product_id) {
       $scope.stateParams.product_id = parseInt($scope.stateParams.product_id);
@@ -92,7 +104,7 @@ angular.module('DemoApp').controller('MainController', [
       'name': 'Electric Key',
       'price': '150',
       'quantity': 5,
-      'quantity-max': 3
+      'max': 3
     };
 
     $scope.products = [{
@@ -104,7 +116,7 @@ angular.module('DemoApp').controller('MainController', [
       'image_path': 'images',
       'price': '150',
       'quantity': 1,
-      'quantity-max': 3,
+      'max': 5,
       data: {}
     }, {
       'id': 2,
@@ -115,7 +127,7 @@ angular.module('DemoApp').controller('MainController', [
       'image_path': 'images',
       'price': '150',
       'quantity': 1,
-      'quantity-max': 3,
+      'max': 4,
       'data': {}
     }, {
       'id': 3,
@@ -126,7 +138,7 @@ angular.module('DemoApp').controller('MainController', [
       'image_path': 'images',
       'price': '150',
       'quantity': 1,
-      'quantity-max': 3,
+      'max': 6,
       'data': {}
     }, {
       'id': 4,
@@ -137,7 +149,7 @@ angular.module('DemoApp').controller('MainController', [
       'image_path': 'images',
       'price': '150',
       'quantity': 1,
-      'quantity-max': 3,
+      'max': 3,
       'data': {}
     }];
 
@@ -145,14 +157,6 @@ angular.module('DemoApp').controller('MainController', [
     //console.log(ngCart.getTotalItems());
     $scope.total_length = ngCart.getTotalItems();
 
-    $scope.init = function() {
-      $scope.userSession = store.get('userSession') || {};
-      if ($scope.userSession) {
-        $scope.userdetails();
-        //$scope.getshippingaddress();
-      }
-
-    };
 
     /*
     @function userlogin
@@ -181,12 +185,15 @@ angular.module('DemoApp').controller('MainController', [
               'state': res.record[0].state,
               'zip': res.record[0].zip
             };
-            store.set('userSession', userSession);
-            //console.log("userDetails:",userSession);
+            $cookieStore.put('userSession', userSession);
+          //  console.log("userDetails:", userSession);
+            var myNewObject = $cookieStore.get('userSession');
+        //    console.log(myNewObject);
+        //    console.log($cookieStore.get('userSession'));
             $scope.init();
             $state.go('profileview');
           } else if (res.status === false) {
-            console.log("login failed");
+        //    console.log("login failed");
             $scope.loginfailuremsg = 'Please Enter Valid Email Address and Password';
             $scope.showloginfailuremsg = true;
 
@@ -199,8 +206,8 @@ angular.module('DemoApp').controller('MainController', [
               document.getElementById("loginform").reset();
             }, 2000);
           }
-        }).error(function() {
-          console.log("Connection Problem.");
+        }).error(function(error) {
+          console.log("Error",error);
         });
       }
     };
@@ -251,8 +258,8 @@ angular.module('DemoApp').controller('MainController', [
             }, 2000);
           }
 
-        }).error(function() {
-          console.log("problem In signup");
+        }).error(function(error) {
+          console.log("problem In signup",error);
         });
       }
 
@@ -292,8 +299,8 @@ angular.module('DemoApp').controller('MainController', [
             }, 2000);
           }
 
-        }).error(function() {
-          console.log("Connection Problem ..");
+        }).error(function(error) {
+          console.log("Error",error);
         });
       }
 
@@ -330,8 +337,8 @@ angular.module('DemoApp').controller('MainController', [
       };
       $http.post(baseUrl + 'shipping/getshippingaddress', customer_id).success(function(res, req) {
         $scope.usershippingdetails = res.record[0];
-      }).error(function() {
-        console.log("Connection Problem!!!");
+      }).error(function(error) {
+        console.log("Error",error);
       });
     };
 
@@ -379,8 +386,8 @@ angular.module('DemoApp').controller('MainController', [
           }, 2000);
         }
 
-      }).error(function() {
-        console.log("Connection Problem!!!");
+      }).error(function(error) {
+        console.log("Error",error);
       });
       /* } */
     };
@@ -401,8 +408,8 @@ angular.module('DemoApp').controller('MainController', [
             $state.go('profileview');
           }, 2000);
         }
-      }).error(function() {
-        console.log("Connection Problem !!!");
+      }).error(function(error) {
+        console.log("Error",error);
       });
     };
   }

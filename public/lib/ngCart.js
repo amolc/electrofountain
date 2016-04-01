@@ -305,12 +305,14 @@ angular.module('ngCart', ['ngCart.directives'])
         return {
 
             get: function (key) {
+              if(key == 'cart'){
                 if ($window.localStorage [key]) {
+                  //  console.log($window.localStorage [key]);
                     var cart = angular.fromJson($window.localStorage [key]);
                     return JSON.parse(cart);
                 }
                 return false;
-
+              }
             },
 
 

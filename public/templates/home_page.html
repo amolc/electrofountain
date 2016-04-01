@@ -452,13 +452,13 @@
                                   <div class="col-md-3" ng-repeat="product in products">
                                     <div class="col-md-12">
                                       <!-- <img src="images/nx4024t032_1_-150x150.jpg"></div> -->
-                                      <img ng-src="images/{{product.image_name}}" alt=""  ui-sref="productdetailspage({ product_id : product.id })"/>
+                                      <img ng-src="images/{{product.image_name}}" alt="" ui-sref="productdetailspage({ product_id : product.id })"/>
                                       <div class="col-md-12" style="text-align:justify;">
                                         {{product.description}}
                                         <div class="center homepage_cartbtn_margin">
                                           <!-- <a type="button" style="background: #efefef;
                                               padding: 5px; text-decoration: none">Add to cart</a> -->
-                                              <ngcart-addtocart id={{product.id}} name={{product.name}} price={{product.price}} quantity={{product.quantity}} quantity-max={{product.quantity-max}}>Add to Cart</ngcart-addtocart>
+                                          <ngcart-addtocart id={{product.id}} name={{product.name}} price={{product.price}} quantity={{product.quantity}} quantity-max={{product.max}}>Add to Cart</ngcart-addtocart>
                                         </div>
                                       </div>
                                     </div>
@@ -548,7 +548,26 @@
                                       });
                                     })
                                   </script>
-                                  <div class="row" style="margin-bottom: 5%;">
+
+                                  <!--  //////////////////////////       POPULAR PRODUCTS   /////////////////////////
+-->
+                                  <div class="row"  style="margin-bottom: 5%;">
+                                    <div class="col-md-3" ng-repeat="product in products">
+                                      <div class="col-md-12">
+                                        <!-- <img src="images/nx4024t032_1_-150x150.jpg"></div> -->
+                                        <img ng-src="images/{{product.image_name}}" alt="" ui-sref="productdetailspage({ product_id : product.id })"/>
+                                        <div class="col-md-12" style="text-align:justify;">
+                                          {{product.description}}
+                                          <div class="center homepage_cartbtn_margin">
+                                            <!-- <a type="button" style="background: #efefef;
+              padding: 5px; text-decoration: none">Add to cart</a> -->
+                                            <ngcart-addtocart id={{product.id}} name={{product.name}} price={{product.price}} quantity={{product.quantity}} quantity-max={{product.max}}>Add to Cart</ngcart-addtocart>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!-- <div class="row" style="margin-bottom: 5%;">
                                     <div class="col-md-3" ui-sref="productdetailspage">
                                       <div class="col-md-12"><img src="images/nx4024t032_1_-150x150.jpg"></div>
                                       <div class="col-md-12">Nextion HMI TFT Intelligent LCD Touch Display Module<div class="center homepage_cartbtn_margin">
@@ -577,261 +596,261 @@
           padding: 5px; text-decoration: none">Add to cart</a>
                                       </div>
                                     </div>
+                                  </div> -->
+
+                                    <div class="flex-controls-container carousel-controls" id="slider-6566-controls"></div>
                                   </div>
 
-                                  <div class="flex-controls-container carousel-controls" id="slider-6566-controls"></div>
                                 </div>
-
                               </div>
-                            </div>
-                            <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_sep_color_grey vc_separator-has-text">
-                              <span class="vc_sep_holder vc_sep_holder_l">
-                                <span class="vc_sep_line"></span>
-                              </span>
-                              <div class="col-md-12 center">
-                                <h4>Post and News</h4>
+                              <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_sep_color_grey vc_separator-has-text">
+                                <span class="vc_sep_holder vc_sep_holder_l">
+                                  <span class="vc_sep_line"></span>
+                                </span>
+                                <div class="col-md-12 center">
+                                  <h4>Post and News</h4>
+                                </div>
+                                <span class="vc_sep_holder vc_sep_holder_r">
+                                  <span class="vc_sep_line"></span>
+                                </span>
                               </div>
-                              <span class="vc_sep_holder vc_sep_holder_r">
-                                <span class="vc_sep_line"></span>
-                              </span>
-                            </div>
-                            <div id="mpc_grid_posts-9556ef8e492a274" class="mpc-grid-posts mpc-init mpc-init mpc-transition mpc-overlay--slide-down mpc-item--fade mpc-layout--style_9  " data-columns="3" data-query='{"layout":"style_9","post_type":"post","taxonomies":"","ids":"","order":"DESC","orderby":"date","items_number":"3","target":"mpc_grid_posts-9556ef8e492a274","callback":"MPC_Grid_Posts"}'>
-                              <div class="row">
-                                <div class="mpc-template" data-template="mpc-post">
-                                  <div class="mpc-post__wrapper">
-                                    <div class="mpc-post__content mpc-transition">
-                                      <h3 class="mpc-post__heading mpc-typography--default">{{get_title}}</h3>
-                                      <div class="mpc-post__description mpc-typography--default">{{get_content}}</div>
-                                      <a href="http://permalink" target="" title="{{title}}" data-id="mpc_button-1356ef8e49361b0" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
-                                        <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
-                                      </a>
+                              <div id="mpc_grid_posts-9556ef8e492a274" class="mpc-grid-posts mpc-init mpc-init mpc-transition mpc-overlay--slide-down mpc-item--fade mpc-layout--style_9  " data-columns="3" data-query='{"layout":"style_9","post_type":"post","taxonomies":"","ids":"","order":"DESC","orderby":"date","items_number":"3","target":"mpc_grid_posts-9556ef8e492a274","callback":"MPC_Grid_Posts"}'>
+                                <div class="row">
+                                  <div class="mpc-template" data-template="mpc-post">
+                                    <div class="mpc-post__wrapper">
+                                      <div class="mpc-post__content mpc-transition">
+                                        <h3 class="mpc-post__heading mpc-typography--default">{{get_title}}</h3>
+                                        <div class="mpc-post__description mpc-typography--default">{{get_content}}</div>
+                                        <a href="http://permalink" target="" title="{{title}}" data-id="mpc_button-1356ef8e49361b0" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
+                                          <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
+                                        </a>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div onclick="" class="mpc-post col-md-4">
-                                  <div class="mpc-post__wrapper">
-                                    <div class="mpc-post__content mpc-transition">
-                                      <h3 class="mpc-post__heading mpc-transition mpc-typography--default">
-                                        <a href="#" title="Wireless Charging Test [Update March 1st]">Wireless Charging Test [Update March 1st]</a>
-                                      </h3>
-                                      <div class="mpc-post__meta mpc-transition mpc-typography--default">
-                                        <span class="mpc-post__tax">in
-                                          <a href="http://www.electrodragon.com/category/prototype/" rel="category tag">Prototype</a>
-                                        </span>/
-                                        <span class="mpc-post__date">on
-                                          <a href="#">
-                                            <span class="mpc-date__inline">01 March 2016</span>
-                                          </a>
-                                        </span>
-                                        |
-                                        <span class="mpc-post__comments">
-                                          <a href="#" title="Comments for Wireless Charging Test [Update March 1st]">No Comments</a>
-                                        </span>
-                                      </div>
-                                      <div class="mpc-post__description mpc-typography--default">You can find the mentioned items in our store here. This is a demo test of the pair of wireless power charger, five LEDs connected paralleled on the receiver end, output more than 200~300 mA (over range of display) current. There are some more notes: We use a very thin plastic bag to separated the receiver</div>
-                                      <a href="#" target="" title="Wireless Charging Test [Update March 1st]" data-id="mpc_button-6956ef8e492b9a4" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
-                                        <div class="mpc-button__content mpc-effect-type--none mpc-effect-side--none">
-                                          <span class="mpc-button__title mpc-transition">Read More</span>
+                                  <div onclick="" class="mpc-post col-md-4">
+                                    <div class="mpc-post__wrapper">
+                                      <div class="mpc-post__content mpc-transition">
+                                        <h3 class="mpc-post__heading mpc-transition mpc-typography--default">
+                                          <a href="#" title="Wireless Charging Test [Update March 1st]">Wireless Charging Test [Update March 1st]</a>
+                                        </h3>
+                                        <div class="mpc-post__meta mpc-transition mpc-typography--default">
+                                          <span class="mpc-post__tax">in
+                                            <a href="http://www.electrodragon.com/category/prototype/" rel="category tag">Prototype</a>
+                                          </span>/
+                                          <span class="mpc-post__date">on
+                                            <a href="#">
+                                              <span class="mpc-date__inline">01 March 2016</span>
+                                            </a>
+                                          </span>
+                                          |
+                                          <span class="mpc-post__comments">
+                                            <a href="#" title="Comments for Wireless Charging Test [Update March 1st]">No Comments</a>
+                                          </span>
                                         </div>
-                                        <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
-                                      </a>
+                                        <div class="mpc-post__description mpc-typography--default">You can find the mentioned items in our store here. This is a demo test of the pair of wireless power charger, five LEDs connected paralleled on the receiver end, output more than 200~300 mA (over range of display) current. There are some more notes: We use a very thin plastic bag to separated the receiver</div>
+                                        <a href="#" target="" title="Wireless Charging Test [Update March 1st]" data-id="mpc_button-6956ef8e492b9a4" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
+                                          <div class="mpc-button__content mpc-effect-type--none mpc-effect-side--none">
+                                            <span class="mpc-button__title mpc-transition">Read More</span>
+                                          </div>
+                                          <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
+                                        </a>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div onclick="" class="mpc-post col-md-4">
-                                  <div class="mpc-post__wrapper">
-                                    <div class="mpc-post__content mpc-transition">
-                                      <h3 class="mpc-post__heading mpc-transition mpc-typography--default">
-                                        <a href="#" title="SMT Pick and Place Machine Work">SMT Pick and Place Machine Work</a>
-                                      </h3>
-                                      <div class="mpc-post__meta mpc-transition mpc-typography--default">
-                                        <span class="mpc-post__tax">in
-                                          <a href="#" rel="category tag">Prototype</a>
-                                        </span>/
-                                        <span class="mpc-post__date">on
-                                          <a href="#">
-                                            <span class="mpc-date__inline">29 February 2016</span>
-                                          </a>
-                                        </span>
-                                        |
-                                        <span class="mpc-post__comments">
-                                          <a href="#" title="Comments for SMT Pick and Place Machine Work">No Comments</a>
-                                        </span>
-                                      </div>
-                                      <div class="mpc-post__description mpc-typography--default">Pick and place file output from eagle, and copy into a SD card for use. The machine only running 10% speed of normal, but actually it can run 150% speed of normal. Each time pick and place work include the following steps: Move to the PCB 0,0 (x,y) zero point, which is locate on the</div>
-                                      <a href="#" target="" title="SMT Pick and Place Machine Work" data-id="mpc_button-9156ef8e492ed9b" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
-                                        <div class="mpc-button__content mpc-effect-type--none mpc-effect-side--none">
-                                          <span class="mpc-button__title mpc-transition">Read More</span>
+                                  <div onclick="" class="mpc-post col-md-4">
+                                    <div class="mpc-post__wrapper">
+                                      <div class="mpc-post__content mpc-transition">
+                                        <h3 class="mpc-post__heading mpc-transition mpc-typography--default">
+                                          <a href="#" title="SMT Pick and Place Machine Work">SMT Pick and Place Machine Work</a>
+                                        </h3>
+                                        <div class="mpc-post__meta mpc-transition mpc-typography--default">
+                                          <span class="mpc-post__tax">in
+                                            <a href="#" rel="category tag">Prototype</a>
+                                          </span>/
+                                          <span class="mpc-post__date">on
+                                            <a href="#">
+                                              <span class="mpc-date__inline">29 February 2016</span>
+                                            </a>
+                                          </span>
+                                          |
+                                          <span class="mpc-post__comments">
+                                            <a href="#" title="Comments for SMT Pick and Place Machine Work">No Comments</a>
+                                          </span>
                                         </div>
-                                        <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
-                                      </a>
+                                        <div class="mpc-post__description mpc-typography--default">Pick and place file output from eagle, and copy into a SD card for use. The machine only running 10% speed of normal, but actually it can run 150% speed of normal. Each time pick and place work include the following steps: Move to the PCB 0,0 (x,y) zero point, which is locate on the</div>
+                                        <a href="#" target="" title="SMT Pick and Place Machine Work" data-id="mpc_button-9156ef8e492ed9b" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
+                                          <div class="mpc-button__content mpc-effect-type--none mpc-effect-side--none">
+                                            <span class="mpc-button__title mpc-transition">Read More</span>
+                                          </div>
+                                          <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
+                                        </a>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div onclick="" class="mpc-post col-md-4">
-                                  <div class="mpc-post__wrapper">
-                                    <div class="mpc-post__content mpc-transition">
-                                      <h3 class="mpc-post__heading mpc-transition mpc-typography--default">
-                                        <a href="#">2016 Chinese New-Year Holidays</a>
-                                      </h3>
-                                      <div class="mpc-post__meta mpc-transition mpc-typography--default">
-                                        <span class="mpc-post__tax">in
-                                          <a href="#" rel="category tag">Our News</a>
-                                        </span>/
-                                        <span class="mpc-post__date">on
-                                          <a href="#">
-                                            <span class="mpc-date__inline">04 February 2016</span>
-                                          </a>
-                                        </span>
-                                        |
-                                        <span class="mpc-post__comments">
-                                          <a href="#" title="Comments for 2016 Chinese New-Year Holidays">No Comments</a>
-                                        </span>
-                                      </div>
-                                      <div class="mpc-post__description mpc-typography--default">Shipment Suspend: We will have a long holiday from 4th till 13th, delivery can not be fulfilled during this time. Holiday promotion: Use coupon code &#8220;2016-year&#8221; to get 10% discount. This discount is not conflicting with your member discount. PCB service PCB service will restart on 14th, please notice. If you place PCB order now, we will</div>
-                                      <a href="#" target="" title="2016 Chinese New-Year Holidays" data-id="mpc_button-2856ef8e4932580" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
-                                        <div class="mpc-button__content mpc-effect-type--none mpc-effect-side--none">
-                                          <span class="mpc-button__title mpc-transition">Read More</span>
+                                  <div onclick="" class="mpc-post col-md-4">
+                                    <div class="mpc-post__wrapper">
+                                      <div class="mpc-post__content mpc-transition">
+                                        <h3 class="mpc-post__heading mpc-transition mpc-typography--default">
+                                          <a href="#">2016 Chinese New-Year Holidays</a>
+                                        </h3>
+                                        <div class="mpc-post__meta mpc-transition mpc-typography--default">
+                                          <span class="mpc-post__tax">in
+                                            <a href="#" rel="category tag">Our News</a>
+                                          </span>/
+                                          <span class="mpc-post__date">on
+                                            <a href="#">
+                                              <span class="mpc-date__inline">04 February 2016</span>
+                                            </a>
+                                          </span>
+                                          |
+                                          <span class="mpc-post__comments">
+                                            <a href="#" title="Comments for 2016 Chinese New-Year Holidays">No Comments</a>
+                                          </span>
                                         </div>
-                                        <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
-                                      </a>
+                                        <div class="mpc-post__description mpc-typography--default">Shipment Suspend: We will have a long holiday from 4th till 13th, delivery can not be fulfilled during this time. Holiday promotion: Use coupon code &#8220;2016-year&#8221; to get 10% discount. This discount is not conflicting with your member discount. PCB service PCB service will restart on 14th, please notice. If you place PCB order now, we will</div>
+                                        <a href="#" target="" title="2016 Chinese New-Year Holidays" data-id="mpc_button-2856ef8e4932580" class="mpc-button mpc-init mpc-transition mpc-typography--default ">
+                                          <div class="mpc-button__content mpc-effect-type--none mpc-effect-side--none">
+                                            <span class="mpc-button__title mpc-transition">Read More</span>
+                                          </div>
+                                          <div class="mpc-button__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
+                                        </a>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="mpc-pagination mpc-init mpc-pagination--load-more mpc-pagination-preset--default mpc-align--center " data-grid="mpc_grid_posts-9556ef8e492a274" data-current="1" data-pages="37" data-type="load-more">
-                              <a class="mpc-typography--default mpc-pagination__link mpc-transition" href="#load-more">
-                                <div class="mpc-pagination__content mpc-effect-type--stay mpc-effect-side--right">
-                                  <span class="mpc-pagination__title mpc-transition">load more</span>
-                                  <i class="mpc-pagination__icon mpc-transition  mi mi-chevron_right"></i>
-                                </div>
-                                <div class="mpc-pagination__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
-                              </a>
-                            </div>
-                            <div class="vc_empty_space" style="height: 10px">
-                              <span class="vc_empty_space_inner"></span>
+                              <div class="mpc-pagination mpc-init mpc-pagination--load-more mpc-pagination-preset--default mpc-align--center " data-grid="mpc_grid_posts-9556ef8e492a274" data-current="1" data-pages="37" data-type="load-more">
+                                <a class="mpc-typography--default mpc-pagination__link mpc-transition" href="#load-more">
+                                  <div class="mpc-pagination__content mpc-effect-type--stay mpc-effect-side--right">
+                                    <span class="mpc-pagination__title mpc-transition">load more</span>
+                                    <i class="mpc-pagination__icon mpc-transition  mi mi-chevron_right"></i>
+                                  </div>
+                                  <div class="mpc-pagination__background mpc-transition mpc-effect-type--fade mpc-effect-side--in"></div>
+                                </a>
+                              </div>
+                              <div class="vc_empty_space" style="height: 10px">
+                                <span class="vc_empty_space_inner"></span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-3">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper"></div>
+                        <div class="wpb_column vc_column_container vc_col-sm-3">
+                          <div class="vc_column-inner ">
+                            <div class="wpb_wrapper"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="vc_row wpb_row vc_row-fluid">
-              <div class="wpb_column vc_column_container vc_col-sm-12">
-                <div class="vc_column-inner ">
-                  <div class="wpb_wrapper">
-                    <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_sep_color_grey vc_separator-has-text">
-                      <span class="vc_sep_holder vc_sep_holder_l">
-                        <span class="vc_sep_line"></span>
-                      </span>
-                      <h4 style="text-align:center">About our Store</h4>
-                      <span class="vc_sep_holder vc_sep_holder_r">
-                        <span class="vc_sep_line"></span>
-                      </span>
-                    </div>
-                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-3">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper col-md-3">
-                                <h4>Comprehensive Product Portfolio</h4>
-                                <ul>
-                                  <li>More over 700 products</li>
-                                  <li>Eight main product categories: Development board, Module/Breakout board, Network, Interface, Sensors, Prototype, Components and Service.</li>
-                                </ul>
+              <div class="vc_row wpb_row vc_row-fluid">
+                <div class="wpb_column vc_column_container vc_col-sm-12">
+                  <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                      <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_pos_align_center vc_sep_color_grey vc_separator-has-text">
+                        <span class="vc_sep_holder vc_sep_holder_l">
+                          <span class="vc_sep_line"></span>
+                        </span>
+                        <h4 style="text-align:center">About our Store</h4>
+                        <span class="vc_sep_holder vc_sep_holder_r">
+                          <span class="vc_sep_line"></span>
+                        </span>
+                      </div>
+                      <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                        <div class="wpb_column vc_column_container vc_col-sm-3">
+                          <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                              <div class="wpb_text_column wpb_content_element ">
+                                <div class="wpb_wrapper col-md-3">
+                                  <h4>Comprehensive Product Portfolio</h4>
+                                  <ul>
+                                    <li>More over 700 products</li>
+                                    <li>Eight main product categories: Development board, Module/Breakout board, Network, Interface, Sensors, Prototype, Components and Service.</li>
+                                  </ul>
 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="wpb_column vc_column_container vc_col-sm-3">
+                          <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                              <div class="wpb_text_column wpb_content_element ">
+                                <div class="wpb_wrapper col-md-3">
+                                  <h4>Quick Update</h4>
+                                  <ul>
+                                    <li>5-10 new products every week!</li>
+                                    <li>New technology, ideas, products focused.</li>
+                                  </ul>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="wpb_column vc_column_container vc_col-sm-3">
+                          <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                              <div class="wpb_text_column wpb_content_element ">
+                                <div class="wpb_wrapper col-md-3">
+                                  <h4>Efficient Shipment</h4>
+                                  <ul>
+                                    <li>Expedited and cheap shipping to most countries, 4-15 days to US, EU, AU, Asia, South Africa, etc.</li>
+                                    <li>Express DHL shipment worldwide</li>
+                                  </ul>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="wpb_column vc_column_container vc_col-sm-3">
+                          <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                              <div class="wpb_text_column wpb_content_element ">
+                                <div class="wpb_wrapper col-md-3">
+                                  <h4>Competitive Price</h4>
+                                  <ul>
+                                    <li>No aggressive price, all competitive price to all the market and sellers.</li>
+                                    <li>Buck order price available when you need large quantity</li>
+                                  </ul>
+
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-3">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper col-md-3">
-                                <h4>Quick Update</h4>
-                                <ul>
-                                  <li>5-10 new products every week!</li>
-                                  <li>New technology, ideas, products focused.</li>
-                                </ul>
-
-                              </div>
-                            </div>
+                      <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                        <div class="wpb_column vc_column_container vc_col-sm-4">
+                          <div class="vc_column-inner ">
+                            <div class="wpb_wrapper"></div>
                           </div>
                         </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-3">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper col-md-3">
-                                <h4>Efficient Shipment</h4>
-                                <ul>
-                                  <li>Expedited and cheap shipping to most countries, 4-15 days to US, EU, AU, Asia, South Africa, etc.</li>
-                                  <li>Express DHL shipment worldwide</li>
-                                </ul>
-
-                              </div>
-                            </div>
+                        <div class="wpb_column vc_column_container vc_col-sm-4">
+                          <div class="vc_column-inner ">
+                            <div class="wpb_wrapper"></div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-3">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper">
-                            <div class="wpb_text_column wpb_content_element ">
-                              <div class="wpb_wrapper col-md-3">
-                                <h4>Competitive Price</h4>
-                                <ul>
-                                  <li>No aggressive price, all competitive price to all the market and sellers.</li>
-                                  <li>Buck order price available when you need large quantity</li>
-                                </ul>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="vc_row wpb_row vc_inner vc_row-fluid">
-                      <div class="wpb_column vc_column_container vc_col-sm-4">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper"></div>
-                        </div>
-                      </div>
-                      <div class="wpb_column vc_column_container vc_col-sm-4">
-                        <div class="vc_column-inner ">
-                          <div class="wpb_wrapper"></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="wpb_column vc_column_container vc_col-sm-12">
-                <div class="vc_column-inner ">
-                  <div class="wpb_wrapper"></div>
+                <div class="wpb_column vc_column_container vc_col-sm-12">
+                  <div class="vc_column-inner ">
+                    <div class="wpb_wrapper"></div>
+                  </div>
                 </div>
               </div>
             </div>
+            <!-- #content -->
+
           </div>
-          <!-- #content -->
-
+          <!-- .content-row -->
         </div>
-        <!-- .content-row -->
+        <!-- #primary .wrap -->
       </div>
-      <!-- #primary .wrap -->
+      <!-- #primary -->
     </div>
-    <!-- #primary -->
-  </div>
