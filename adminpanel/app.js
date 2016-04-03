@@ -22,6 +22,10 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', function
       url: '/mainview',
       templateUrl: 'templates/mainview.html'
     })
+    .state('mainview.welcome', {
+      url: '/welcome',
+      templateUrl: 'templates/welcome.html'
+    })
     .state('mainview.category', {
       url: '/category',
       templateUrl: 'templates/category.html'
@@ -103,7 +107,7 @@ angular.module('adminPanel').controller('MainController', [
     $scope.userlogin = function(user, loginForm) {
       if (loginForm.$valid) {
         if (user.email === 'test@ft.com' && user.password === '1234') {
-          $state.go('mainview');
+          $state.go('mainview.welcome');
         }
       }
 
