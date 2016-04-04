@@ -7,7 +7,7 @@ var ApplicationModuleName = 'adminPanel';
 
 
 // Create the main application
-var SampleApplicationModule = angular.module('adminPanel', ['ui.router', 'ngCookies','ngMessages']);
+var SampleApplicationModule = angular.module('adminPanel', ['ui.router', 'ngCookies','ngMessages','ngAnimate','ui.bootstrap']);
 
 
 SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
@@ -98,6 +98,7 @@ angular.module('adminPanel').controller('MainController', [
   '$state',
   '$timeout',
   '$cookieStore',
+  // 'modalService',
   function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, $cookieStore) {
 
     $scope.stateParams = $stateParams;

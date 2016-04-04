@@ -34,14 +34,14 @@
         <div class="form-group">
           <!-- <div class="row">
             <div class="col-sm-6 col-sm-offset-3"> -->
-            <div class="" ng-if="category.category_id == 0">
-              <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn-primary" value="Save">
-            </div>
-            <div class="" ng-if="category.category_id > 0">
-              <input type="submit" name="category-update" id="category-update" tabindex="4" class="form-control btn-primary" value="Update">
-              <br>
-              <input type="button" ng-click="resetCategory()" name="category-cancel" id="category-cancel" tabindex="4" class="form-control btn-primary" value="Cancel">
-            </div>
+          <div class="" ng-if="category.category_id == 0">
+            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn-primary" value="Save">
+          </div>
+          <div class="" ng-if="category.category_id > 0">
+            <input type="submit" name="category-update" id="category-update" tabindex="4" class="form-control btn-primary" value="Update">
+            <br>
+            <input type="button" ng-click="resetCategory()" name="category-cancel" id="category-cancel" tabindex="4" class="form-control btn-primary" value="Cancel">
+          </div>
           <br>
           <br>
           <div ng-model="categorySuccessmsg" ng-show="showcategorySuccessmsg" class="alert alert-success">{{categorySuccessmsg}}</div>
@@ -58,7 +58,7 @@
           <th>Name</th>
           <th>Description</th>
           <th>Type</th>
-          <th>Action</th>
+          <th style="width: 90px;">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -68,7 +68,8 @@
           <th>{{cat.category_type}}</th>
           <th>
             <span class="">
-              <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="editCategory(cat)"></i>
+              <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="editCategory(cat)"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
+              <i class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="deleteCategory(cat,$index)"></i>
             </span>
           </th>
         </tr>

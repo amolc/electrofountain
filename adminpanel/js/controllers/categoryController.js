@@ -8,7 +8,24 @@ angular.module('adminPanel').controller('categoryController', [
   '$timeout',
   '$cookieStore',
   'ApiService',
-  function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, $cookieStore, ApiService) {
+  'modalService',
+  function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, $cookieStore, ApiService, modalService) {
+
+    $scope.deleteCategory = function(category,index) {
+      var modalOptions = {
+        closeButtonText: 'Cancel',
+        actionButtonText: 'Delete ',
+        headerText: 'Delete Category',
+        bodyText: 'Delete Category '+category.category_name,
+        controller: 'categoryController',
+      };
+      modalService.showModal({}, modalOptions).then(function(result) {
+         ApiService.deletecategory(category).then(function(data) {
+           //   console.log(data);
+           $scope.categoryList.splice(index, 1);
+         });
+      });
+    };
 
     $scope.category = {
       category_id: 0,
@@ -79,7 +96,7 @@ angular.module('adminPanel').controller('categoryController', [
     };
 
     $scope.resetCategory = function() {
-        document.getElementById("categoryForm").reset();
+      document.getElementById("categoryForm").reset();
       $scope.category = {
         category_id: 0,
         category_name: '',

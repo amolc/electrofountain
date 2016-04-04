@@ -56,4 +56,27 @@ router.post('/getcategories', function(req, res) {
   });
 });
 
+router.post('/deletecategory', function(req, res) {
+  categoryCRUD.destroy({
+    category_id: req.body.category_id
+  }, function(error, result) {
+    console.log(result);
+    if (result) {
+      responsedata = {
+        status: true,
+        record: result,
+        message: 'Category Deleted'
+      };
+      res.jsonp(responsedata);
+    } else {
+      responsedata = {
+        status: false,
+        record: result,
+        message: 'Failed to Delete Category'
+      };
+      res.jsonp(responsedata);
+    }
+  });
+});
+
 module.exports = router;

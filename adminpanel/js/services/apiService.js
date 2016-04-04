@@ -18,8 +18,18 @@ app.factory('ApiService', function($http, $q) {
       });
   };
 
-  factory.method2 = function() {
-    //..
+  factory.deletecategory = function(category) {
+    return $http.post(baseUrl + 'category/deletecategory', category)
+      .then(function(response) {
+        // promise is fulfilled
+        deferred.resolve(response.data);
+        return deferred.promise;
+      }, function(response) {
+        // the following line rejects the promise
+        deferred.reject(response);
+        return deferred.promise;
+      });
   };
+
   return factory;
 });
