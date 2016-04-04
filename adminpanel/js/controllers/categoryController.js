@@ -79,6 +79,7 @@ angular.module('adminPanel').controller('categoryController', [
     };
 
     $scope.resetCategory = function() {
+        document.getElementById("categoryForm").reset();
       $scope.category = {
         category_id: 0,
         category_name: '',
