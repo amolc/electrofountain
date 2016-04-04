@@ -18,8 +18,34 @@ app.factory('ApiService', function($http, $q) {
       });
   };
 
+  factory.getsubcategories = function() {
+    return $http.post(baseUrl + 'category/getsubcategories')
+      .then(function(response) {
+        // promise is fulfilled
+        deferred.resolve(response.data);
+        return deferred.promise;
+      }, function(response) {
+        // the following line rejects the promise
+        deferred.reject(response);
+        return deferred.promise;
+      });
+  };
+
   factory.deletecategory = function(category) {
     return $http.post(baseUrl + 'category/deletecategory', category)
+      .then(function(response) {
+        // promise is fulfilled
+        deferred.resolve(response.data);
+        return deferred.promise;
+      }, function(response) {
+        // the following line rejects the promise
+        deferred.reject(response);
+        return deferred.promise;
+      });
+  };
+
+  factory.updatecategory = function(category) {
+    return $http.post(baseUrl + 'category/updatecategory', category)
       .then(function(response) {
         // promise is fulfilled
         deferred.resolve(response.data);
