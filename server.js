@@ -70,7 +70,8 @@ if (app.get('env') === 'development') {
 app.use('/', express.static(__dirname + '/public'));
 app.use('/api', express.static(__dirname + '/api'));
 app.use('/mobile', express.static(__dirname + '/mobile/www'));
-app.use('/adminpanel', express.static(__dirname + '/adminpanel'));
+app.use('/admin', express.static(__dirname + '/adminpanel'));
+
 
 var userlogin = require('./api/userlogin.js');
 var todos = require('./api/todos.js');
@@ -78,6 +79,7 @@ var device_register = require('./api/device_register.js');
 var sendpushnotification = require('./api/sendpushnotification.js');
 var billing = require('./api/billing.js');
 var shipping = require('./api/shipping.js');
+var category = require('./api/category.js');
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -91,6 +93,7 @@ app.all('*', function(req, res, next) {
 app.use('/api/userlogin', userlogin);
 app.use('/api/billing', billing);
 app.use('/api/shipping', shipping);
+app.use('/api/category', category);
 
 /*app.post('/api/addtodos',todos.addtodos);
 app.post('/api/gettodos',todos.gettodos);
