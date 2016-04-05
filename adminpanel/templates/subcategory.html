@@ -8,7 +8,7 @@
     </span>
     <br/>
     <br/>
-    <div ng-show="!custom">
+    <div ng-show="custom">
       <div class="col-md-6 col-md-offset-3">
         <div class="form-group">
           <select class="form-control" name="categories" ng-model="sub_category.category_id" ng-options="category.category_id as category.category_name for category in categoryList" required>
@@ -62,7 +62,7 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
-          <th>Type</th>
+          <!-- <th>Type</th> -->
           <th style="width: 90px;">Action</th>
         </tr>
       </thead>
@@ -70,11 +70,11 @@
         <tr ng-repeat="subcat in subcategoryList">
           <th>{{subcat.sub_category_name}}</th>
           <th>{{subcat.sub_category_description}}</th>
-          <th>{{subcat.sub_category_type}}</th>
+          <!-- <th>{{subcat.sub_category_type}}</th> -->
           <th>
             <span class="">
-              <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="editCategory(cat)"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
-              <i class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="deleteCategory(cat,$index)"></i>
+              <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="editsubCategory(subcat)"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
+              <i class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="deletesubCategory(subcat,$index)"></i>
             </span>
           </th>
         </tr>
