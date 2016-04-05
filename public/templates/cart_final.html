@@ -1,13 +1,18 @@
 <div>
-  <br/>
-  <br/>
-  <div class="container">
-    <div class="col-sm-12">
-      <h1 class="text-center">CART</h1>
+    <br/>
+    <br/>
+    <div class="container">
+        <div class="col-sm-12">
+            <h1 class="text-center">CART</h1>
+        </div>
     </div>
-  </div>
-  <ngcart-cart></ngcart-cart>
-  <div style="text-align: right;">
-    <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout>
-  </div>
+    <ngcart-cart></ngcart-cart>
+    <!-- <div style="text-align: right;"> -->
+      hello
+        <form action="localhost:8500/api/billing/charge" method="POST">
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="sk_test_y0BiTcY7tiFEIWTrOggOGKVY" data-amount="2000" data-name="Electro Fountain" data-description="1 lcd panel ($150.00)" data-image="/128x128.png" data-locale="auto"></script>
+        </form>
+        <!-- <ngcart-checkout service="http" settings="{ url:'/checkout' }">Checkout</ngcart-checkout> -->
+    <!-- </div> -->
 </div>
