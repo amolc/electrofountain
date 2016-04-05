@@ -46,13 +46,12 @@ angular.module('adminPanel').controller('categoryController', [
             }
         };
         $scope.addsubCategory = function() {
-          //  console.log('add sub category', $scope.sub_category);
             $http.post(baseUrl + 'category/addsubcategory', $scope.sub_category).success(function(res, req) {
-              //  console.log(res);
                 if (res.status === true) {
 
                     $scope.subcategoryList.push({
                         sub_category_id: res.sub_category_id,
+                        category_id: $scope.sub_category.category_id,
                         sub_category_name: $scope.sub_category.sub_category_name,
                         sub_category_description: $scope.sub_category.sub_category_description,
                         sub_category_type: $scope.sub_category.category_type
@@ -66,9 +65,6 @@ angular.module('adminPanel').controller('categoryController', [
                             $scope.resetsubCategory();
                         }, 3000);
                     }, 2000);
-                    // document.getElementById("subcategoryForm").reset();
-                    // $scope.custom = false;
-
                 } else {
 
                     $scope.subcategoryErrorsmsg = res.message;
@@ -79,9 +75,6 @@ angular.module('adminPanel').controller('categoryController', [
                             $scope.resetsubCategory();
                         }, 3000);
                     }, 2000);
-                    // document.getElementById("subcategoryForm").reset();
-                    // $scope.custom = false;
-
                 }
             }).error(function(error) {
                 console.log("Error", error);
@@ -198,7 +191,7 @@ angular.module('adminPanel').controller('categoryController', [
         };
 
         $scope.editCategory = function(category) {
-          //  console.log('category', category);
+            console.log('category', category);
             $scope.category = category;
             $scope.custom = true;
         };

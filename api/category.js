@@ -9,7 +9,7 @@ var subcategoryCRUD = CRUD(connection, 'sub_category');
 
 
 router.post('/addcategory', function(req, res) {
-  //  console.log('Category :', req.body);
+    //  console.log('Category :', req.body);
     categoryCRUD.create({
         'category_name': req.body.category_name,
         'category_description': req.body.category_description,
@@ -37,35 +37,6 @@ router.post('/addcategory', function(req, res) {
     });
 });
 
-router.post('/addsubcategory', function(req, res) {
-  //  console.log('Sub Category :', req.body);
-    subcategoryCRUD.create({
-        'category_id': req.body.category_id,
-        'sub_category_name': req.body.sub_category_name,
-        'sub_category_description': req.body.sub_category_description,
-        'sub_category_alias': '',
-        'created_on': env.timestamp(),
-        'modified_on': env.timestamp()
-    }, function(error, result) {
-        if (result) {
-            responsedata = {
-                status: true,
-                record: result,
-                sub_category_id: result.insertId,
-                message: 'Sub Category Added Successfully'
-            };
-            res.jsonp(responsedata);
-        } else {
-            console.log('error', error);
-            responsedata = {
-                status: false,
-                error: error,
-                message: 'Failed to Add Sub Category'
-            };
-            res.jsonp(responsedata);
-        }
-    });
-});
 
 router.post('/getcategories', function(req, res) {
     categoryCRUD.load({}, function(error, result) {
@@ -87,26 +58,6 @@ router.post('/getcategories', function(req, res) {
     });
 });
 
-router.post('/getsubcategories', function(req, res) {
-    subcategoryCRUD.load({}, function(error, result) {
-        if (result) {
-            responsedata = {
-                status: true,
-                record: result,
-                message: 'Sub Category List'
-            };
-            res.jsonp(responsedata);
-        } else {
-            responsedata = {
-                status: false,
-                record: result,
-                message: 'Failed to Fetch Sub Category List'
-            };
-            res.jsonp(responsedata);
-        }
-    });
-});
-
 router.post('/deletecategory', function(req, res) {
     categoryCRUD.destroy({
         category_id: req.body.category_id
@@ -119,7 +70,7 @@ router.post('/deletecategory', function(req, res) {
             };
             res.jsonp(responsedata);
         } else {
-          console.log('Failed to Delete Category',error);
+            console.log('Failed to Delete Category', error);
             responsedata = {
                 status: false,
                 record: result,
@@ -130,34 +81,9 @@ router.post('/deletecategory', function(req, res) {
     });
 });
 
-router.post('/deletesubcategory', function(req, res) {
-    //console.log('delete sub category',req.body);
-    subcategoryCRUD.destroy({
-        sub_category_id: req.body.sub_category_id
-    }, function(error, result) {
-      //  console.log(result);
-        if (result) {
-            responsedata = {
-                status: true,
-                record: result,
-                message: 'Sub Category Deleted'
-            };
-            res.jsonp(responsedata);
-        } else {
-            console.log('Failed to Delete Sub Category ',error);
-            responsedata = {
-                status: false,
-                error: error,
-                message: 'Failed to Delete Sub Category'
-            };
-            res.jsonp(responsedata);
-        }
-    });
-});
-
 //updatecategory
 router.post('/updatecategory', function(req, res) {
-  //  console.log('update category', req.body);
+    //  console.log('update category', req.body);
     categoryCRUD.update({
         'category_id': req.body.category_id
     }, {
@@ -186,13 +112,93 @@ router.post('/updatecategory', function(req, res) {
     });
 });
 
+
+
+router.post('/addsubcategory', function(req, res) {
+      console.log('Sub Category :', req.body);
+    subcategoryCRUD.create({
+        'category_id': req.body.category_id,
+        'sub_category_name': req.body.sub_category_name,
+        'sub_category_description': req.body.sub_category_description,
+        'sub_category_alias': '',
+        'created_on': env.timestamp(),
+        'modified_on': env.timestamp()
+    }, function(error, result) {
+        if (result) {
+            responsedata = {
+                status: true,
+                record: result,
+                sub_category_id: result.insertId,
+                message: 'Sub Category Added Successfully'
+            };
+            res.jsonp(responsedata);
+        } else {
+            console.log('error', error);
+            responsedata = {
+                status: false,
+                error: error,
+                message: 'Failed to Add Sub Category'
+            };
+            res.jsonp(responsedata);
+        }
+    });
+});
+
+router.post('/getsubcategories', function(req, res) {
+    var query = "SELECT * FROM category JOIN sub_category ON  sub_category.category_id= category.category_id";
+    connection.query(query, function(error, result) {
+        if (result) {
+            responsedata = {
+                status: true,
+                record: result,
+                message: 'Sub Category List'
+            };
+            res.jsonp(responsedata);
+        } else {
+            responsedata = {
+                status: false,
+                record: result,
+                message: 'Failed to Fetch Sub Category List'
+            };
+            res.jsonp(responsedata);
+        }
+    });
+});
+
+
+
+router.post('/deletesubcategory', function(req, res) {
+    //console.log('delete sub category',req.body);
+    subcategoryCRUD.destroy({
+        sub_category_id: req.body.sub_category_id
+    }, function(error, result) {
+        //  console.log(result);
+        if (result) {
+            responsedata = {
+                status: true,
+                record: result,
+                message: 'Sub Category Deleted'
+            };
+            res.jsonp(responsedata);
+        } else {
+            console.log('Failed to Delete Sub Category ', error);
+            responsedata = {
+                status: false,
+                error: error,
+                message: 'Failed to Delete Sub Category'
+            };
+            res.jsonp(responsedata);
+        }
+    });
+});
+
 //updatecategory
 router.post('/updatesubcategory', function(req, res) {
-  //  console.log('update category', req.body);
+    //  console.log('update category', req.body);
     subcategoryCRUD.update({
         'sub_category_id': req.body.sub_category_id
     }, {
-        'category_id' : req.body.category_id,
+        'category_id': req.body.category_id,
         'sub_category_name': req.body.sub_category_name,
         'sub_category_description': req.body.sub_category_description,
         'sub_category_alias': '',
@@ -207,7 +213,7 @@ router.post('/updatesubcategory', function(req, res) {
             };
             res.jsonp(responsedata);
         } else {
-            console.log('Failed to Update Category',error);
+            console.log('Failed to Update Category', error);
             responsedata = {
                 status: false,
                 error: error,
