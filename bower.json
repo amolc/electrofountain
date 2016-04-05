@@ -10,6 +10,7 @@
   "moduleType": [],
   "private": true,
   "dependencies": {
-    "ngCart": "ngcart#^1.0.0"
+    "ngCart": "ngcart#^1.0.0",
+    "angular-payments": "*"
   }
 }

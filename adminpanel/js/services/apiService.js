@@ -4,7 +4,6 @@ var app = angular.module('adminPanel');
 app.factory('ApiService', function($http, $q) {
   var factory = {};
 
-
   factory.getcategories = function() {
     var deferred = $q.defer();
     return $http.post(baseUrl + 'category/getcategories')

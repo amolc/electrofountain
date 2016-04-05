@@ -6,11 +6,11 @@
 }
 
 .footer {
-	border: 1px solid #efefef; 
+	border: 1px solid #efefef;
 	height: 100px;
 }
 .header {
-	border: 1px solid #efefef; 
+	border: 1px solid #efefef;
 	height: 130px;
 }
 .comman_background {
@@ -76,11 +76,11 @@ table.md-calendar-day-header {
 }
 .cart_btn_detailspage {
     background: #b32d59;
-    padding: 5px; 
+    padding: 5px;
     border-radius: 2px;
     color: white;
 }
 
 .nav-tabs li a,
 .nav-tabs li a:active,
-.nav-tabs li a:focus { outline:0px !important; -webkit-appearance:none;  text-decoration:none; }  
+.nav-tabs li a:focus { outline:0px !important; -webkit-appearance:none;  text-decoration:none; }
