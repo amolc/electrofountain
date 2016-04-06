@@ -89,19 +89,36 @@ angular.module('DemoApp').controller('MainController', [
             }
         };
 
+        $scope.hideAlerts = function() {
+            $scope.stripeError = null;
+            $scope.stripeToken = null;
+        };
+
+        console.log(ngCart.getSubTotal());
+
         $scope.stripeCallback = function(code, result) {
             if (result.error) {
                 $scope.stripeError = result.error.message;
+                // Simulate 2 seconds loading delay
+                $timeout(function() {
+                    // Loadind done here - Show message for 3 more seconds.
+                    $timeout(function() {
+                        $scope.hideAlerts();
+                    }, 3000);
+                }, 2000);
             } else {
                 $scope.stripeToken = result.id;
                 var cart = store.get('cart');
-                console.log(cart.items);
+                console.log('cart', cart);
+                console.log('cart items', cart.items);
                 var billingData = {
                     stripeToken: result.id,
+                    totalAmount: ngCart.getSubTotal(),
                     metaData: cart.items
                 };
+
                 $http.post(baseUrl + 'billing/charge', billingData).success(function(res, req) {
-                  console.log('res',res);
+                    console.log('res', res);
                 }).error(function(error) {
                     console.log("Error", error);
                 });
@@ -132,7 +149,7 @@ angular.module('DemoApp').controller('MainController', [
             'image_name': 'nx4024t032_1_-150x150.jpg',
             'image_name_350': 'nx4024t032_1_-350x350.jpg',
             'image_path': 'images',
-            'price': '150',
+            'price': '80',
             'quantity': 1,
             'max': 5,
             data: {}
@@ -143,7 +160,7 @@ angular.module('DemoApp').controller('MainController', [
             'image_name': '1.5A-Current-Wireless-Power-Transfer-Kit-02-150x150.jpg',
             'image_name_350': '1.5A-Current-Wireless-Power-Transfer-Kit-02-350x350.jpg',
             'image_path': 'images',
-            'price': '150',
+            'price': '70',
             'quantity': 1,
             'max': 4,
             'data': {}
@@ -165,7 +182,7 @@ angular.module('DemoApp').controller('MainController', [
             'image_name': 'MT3608-2A-DC-DC-Boost-Step-up-ADJ-Power-Module-150x150.jpg',
             'image_name_350': 'ESP8266-IO-SMD-01-350x350.jpg',
             'image_path': 'images',
-            'price': '150',
+            'price': '100',
             'quantity': 1,
             'max': 3,
             'data': {}

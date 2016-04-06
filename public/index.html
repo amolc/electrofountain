@@ -967,13 +967,11 @@
                     </script>
 
                     <script type="text/ng-template" id="template/ngCart/checkout.html">
-
                         <div ng-if="service=='http' || service == 'log'">
-                            <button class="btn btn-primary" ng-click="checkout()" ng-disabled="!ngCart.getTotalItems()" ng-transclude>Checkout</button>
+                            <button class="btn btn-primary" ng-disabled="!ngCart.getTotalItems()" ng-transclude>Checkout</button>
                         </div>
 
                         <div ng-if="service=='paypal'">
-
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" ng-show="ngCart.getTotalItems()">
                                 <input type="hidden" name="cmd" value="_xclick">
                                 <input type="hidden" name="business" value="{{ settings.paypal.business }}">

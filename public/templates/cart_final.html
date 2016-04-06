@@ -1,3 +1,82 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<!-- <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script> -->
+
+<!-- If you're using Stripe for payments -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+<!-- Credit card form -->
+<div class="container">
+    <div class="col-sm-12">
+        <h1 class="text-center">CART</h1>
+    </div>
+    <ngcart-cart></ngcart-cart>
+    <ngcart-checkout service="log" ng-click="custom=!custom">CHECKOUT</ngcart-checkout>
+    <div class="row" ng-show="custom">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height: 53px;">
+                    <h3 class="panel-title"><img class="pull-right" src="http://i76.imgup.net/accepted_c22e0.png">Payment Details</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- <form role="form" id="payment-form"> -->
+                    <form name="checkoutForm" stripe-form="stripeCallback" ng-submit="onSubmit()">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="cardNumber">CARD NUMBER</label>
+                                    <div class="input-group">
+                                        <input ng-model="number" class="form-control" name="number" payments-format="card" payments-validate="card" placeholder="Card Number" type="text"/>
+                                        <br/>
+                                        <span class="alert text-danger" ng-show="checkoutForm.number.$invalid">Invalid card number</span>
+                                        <!-- <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" required autofocus data-stripe="number"/> -->
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="cardNumber">EXPIRATION</label>
+                                    <div class="input-group">
+                                        <input ng-model="expiry" class="form-control" name="expiry" payments-format="expiry" payments-validate="expiry" placeholder="Expiry" type="text"/>
+                                        <span class="alert text-danger" ng-show="checkoutForm.expiry.$invalid">Invalid card number</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="cardNumber">CV CODE</label>
+                                    <input ng-model="cvc" name="cvc" class="form-control" payments-format="cvc" payments-validate="cvc" placeholder="CVC" type="text"/>
+                                    <span class="alert text-danger" ng-show="checkoutForm.cvc.$invalid">Invalid CVC.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button class="btn btn-success btn-lg btn-block" type="submit">Place Order</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div ng-show="stripeError" type="'alert'" close="hideAlerts()">
+                                <span class="alert text-danger">{{stripeError}}</span>
+                            </div>
+                            <div class="col-xs-12">
+                                <p class="payment-errors"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <div>
     <br/>
     <br/>
@@ -12,36 +91,37 @@
         <form name="checkoutForm" stripe-form="stripeCallback" ng-submit="onSubmit()">
             <legend>Payment Information</legend>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-md-offset-3">
                     <input ng-model="number" name="number" payments-format="card" payments-validate="card" placeholder="Card Number" type="text"/>
                     <span class="alert text-danger" ng-show="checkoutForm.number.$invalid">Invalid card number</span>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-md-offset-3">
                     <input ng-model="expiry" name="expiry" payments-format="expiry" payments-validate="expiry" placeholder="Expiry" type="text"/>
                     <span class="alert text-danger" ng-show="checkoutForm.expiry.$invalid">Invalid date.</span>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-md-offset-3">
                     <input ng-model="cvc" name="cvc" payments-format="cvc" payments-validate="cvc" placeholder="CVC" type="text"/>
                     <span class="alert text-danger" ng-show="checkoutForm.cvc.$invalid">Invalid CVC.</span>
                 </div>
-                <br>
-                <div ng-if="stripeError" type="'alert'" close="hideAlerts()">
-                <span class="alert text-danger">{{stripeError}}</span>    
+                <br><br><br>
+                <div class="col-md-3 col-md-offset-3">
+                  <button type="submit" class="btn btn-success" ng-disabled="checkoutForm.$invalid">Place Order</button>
                 </div>
-                <!-- <div ng-if="stripeToken" close="hideAlerts()">
+                <div ng-if="stripeError" type="'alert'" close="hideAlerts()">
+                    <span class="alert text-danger">{{stripeError}}</span>
+                </div>
+                <div ng-if="stripeToken" close="hideAlerts()">
                     Stripe successfully acquired! Token:
                     {{stripeToken}}
-                </div> -->
+                </div>
                 <div class="clearfix">
-                    <div class="">
-                        <button type="submit" class="btn btn-primary" ng-disabled="checkoutForm.$invalid">Place Order</button>
-                    </div>
+                    <div class=""></div>
                 </div>
             </form>
-        </div>
+        </div> -->

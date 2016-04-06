@@ -9,12 +9,14 @@ var stripe = require('stripe')('sk_test_y0BiTcY7tiFEIWTrOggOGKVY');
 
 
 router.post('/charge', function(req, res, next) {
-  console.log('req.body.stripeToken', req.body.stripeToken);
+  console.log('req.body', req.body);
+  var billingStripe = req.body;
+//  res.jsonp(billingStripe);
+
     stripe.charges.create({
-        amount: 2000,
-        currency: 'usd',
+        amount: req.body.totalAmount,
+          currency: 'sgd',
         source: req.body.stripeToken,
-        description: 'One time deposit for'
     }, function(err, charge) {
         if (err) {
             return next(err);
