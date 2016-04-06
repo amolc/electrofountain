@@ -1,0 +1,25 @@
+<div class="container" data-ng-init="getOrders()">
+    <h1 class="bg-primary" style=" text-align: center;">ORDERS</h1>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in orderList">
+                <th>{{order.order_id}}</th>
+                <th>{{order.order_date | date}}</th>
+                <th>{{order.order_status}}</th>
+                <th class="text-center">
+                    <a class='btn btn-info btn-xs'  ui-sref="orderdetails({ order_id : order.order_id })">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        View</a>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>

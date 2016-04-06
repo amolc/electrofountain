@@ -58,6 +58,16 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', 'storePr
             url: '/cart',
             templateUrl: 'templates/cart_final.html'
         })
+        .state('orders', {
+            url: '/orders',
+            templateUrl: 'templates/orders.html',
+            controller : 'ordercontroller'
+        })
+        .state('orderdetails', {
+            url: '/orderdetails/:order_id',
+            templateUrl: 'templates/orderdetails.html',
+            controller : 'ordercontroller'
+        })
 
     .state('productdetailspage', {
         url: '/productdetailspage/:product_id',

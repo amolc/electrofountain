@@ -31,14 +31,14 @@ router.post('/charge', function(req, res, next) {
 
             createOrder(billingData, function(res_order) {
 
-                // console.log('Response ', res_order);
+                 //console.log('Response ', res_order);
                 if (res_order.status === 1) {
                     billingData.status = true;
-                    billingData.order_id = res_order.order_id;
+                    billingData.metaData.order_id = res_order.order_id;
                     //  create order Details
 
                     createOrderDetails(billingData.metaData, function(res_order_details) {
-                        console.log('res_order_details ', res_order_details);
+                  //      console.log('res_order_details ', res_order_details);
                         res.jsonp(billingData);
                     });
                 } else {
@@ -68,7 +68,7 @@ router.post('/charge', function(req, res, next) {
                     status: 0
                 });
             } else {
-                console.log('result ', result);
+                // console.log('result ', result);
                 callback({
                     status: 1,
                     order_id: result.insertId
@@ -78,11 +78,13 @@ router.post('/charge', function(req, res, next) {
     }
 
     function createOrderDetails(data, callback_order) {
+
+      console.log('data order id',data.order_id);
         // order_detailsCRUD
         async.forEach(data, function(single_item, callback) {
 
             order_detailsCRUD.create({
-                'order_id': single_item.order_id,
+                'order_id': data.order_id,
                 'item_id': single_item._id,
                 'quantity_ordered': single_item._quantity,
                 'price_each': single_item._price,
@@ -112,30 +114,52 @@ router.post('/charge', function(req, res, next) {
 
 });
 
-router.post('/callback', function(req, res) {
-    var data = {
-        'name': 'swapnil'
-    };
+router.post('/getorders', function(req, res) {
 
-    order(data, function(res_order) {
-        console.log('Response ', res_order);
-        res.jsonp(res_order);
-    });
+  ordersCRUD.load({
+    'customer_id':req.body.customer_id
+  }, function(error, result) {
+      if (result) {
+          responsedata = {
+              status: true,
+              record: result,
+              message: 'Order List'
+          };
+          res.jsonp(responsedata);
+      } else {
+          responsedata = {
+              status: false,
+              error: error,
+              message: 'Failed to Fetch Order List'
+          };
+          res.jsonp(responsedata);
+      }
+  });
 
-    function order(data, callback) {
-        console.log('data in order function', data);
-        var error = false;
-        if (error) {
-            callback({
-                status: 0
-            });
-        } else {
-            callback({
-                status: 0,
-                order_id: 9
-            });
-        }
-    }
+});
+
+router.post('/getorderdetails', function(req, res) {
+
+  order_detailsCRUD.load({
+    'order_id':req.body.order_id
+  }, function(error, result) {
+      if (result) {
+          responsedata = {
+              status: true,
+              record: result,
+              message: 'Order List'
+          };
+          res.jsonp(responsedata);
+      } else {
+          responsedata = {
+              status: false,
+              error: error,
+              message: 'Failed to Fetch Order List'
+          };
+          res.jsonp(responsedata);
+      }
+  });
+
 });
 
 

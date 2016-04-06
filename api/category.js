@@ -56,6 +56,7 @@ router.post('/getcategories', function(req, res) {
             res.jsonp(responsedata);
         }
     });
+
 });
 
 router.post('/deletecategory', function(req, res) {

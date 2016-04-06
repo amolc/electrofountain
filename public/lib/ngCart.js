@@ -39,7 +39,7 @@ angular.module('ngCart', ['ngCart.directives'])
         };
 
         this.addItem = function (id, name, price, quantity, data) {
-            console.log("id", id,"name", name,"price", price,"quantity", quantity,"data", data );
+            //console.log("id", id,"name", name,"price", price,"quantity", quantity,"data", data );
             var inCart = this.getItemById(id);
 
             if (typeof inCart === 'object'){
