@@ -104,10 +104,10 @@ angular.module('DemoApp').controller('MainController', [
         // console.log($scope.userSession);
 
         if ($scope.userSession.userid) {
-            console.log('User Id ', $scope.userSession.userid);
+        //    console.log('User Id ', $scope.userSession.userid);
         } else {
             $scope.userSession.userid = '';
-            console.log('Not Logged In User', $scope.userSession.userid);
+        //    console.log('Not Logged In User', $scope.userSession.userid);
         }
 
         $scope.hideAlerts = function() {
@@ -131,8 +131,8 @@ angular.module('DemoApp').controller('MainController', [
             } else {
                 $scope.stripeToken = result.id;
                 var cart = store.get('cart');
-                console.log('cart', cart);
-                console.log('cart items', cart.items);
+              //  console.log('cart', cart);
+            //    console.log('cart items', cart.items);
 
                 var billingData = {
                     stripeToken: result.id,
@@ -142,14 +142,15 @@ angular.module('DemoApp').controller('MainController', [
                 };
 
                 $http.post(baseUrl + 'billing/charge', billingData).success(function(res, req) {
-                    console.log('res', res);
+                  //  console.log('res', res);
                     if (res.status === true) {
-                        console.log('Ordered Placed Successfully');
+                //        console.log('Ordered Placed Successfully');
                         $scope.showorderSuccess = true;
                         $scope.orderSuccess = 'Ordered Placed Successfully';
                         $timeout(function() {
                             $timeout(function() {
                                 $scope.showorderSuccess = false;
+                                ngCart.empty();
                                 $state.go('profileview');
                             }, 3000);
                         }, 2000);
