@@ -17,6 +17,7 @@ router.post('/charge', function(req, res, next) {
         amount: req.body.totalAmount,
           currency: 'sgd',
         source: req.body.stripeToken,
+        description: 'Transaction for purchase ' + req.body.stripeToken
     }, function(err, charge) {
         if (err) {
             return next(err);
