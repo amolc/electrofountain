@@ -4,6 +4,8 @@
 
 // Set the main application name
 var ApplicationModuleName = 'DemoApp';
+
+// stripe secreet key
 Stripe.setPublishableKey('pk_test_OKKZyHD6nnZujaeDy0ks4fWa');
 
 // Create the main application
@@ -82,26 +84,36 @@ angular.module('DemoApp').controller('MainController', [
 
         $scope.init = function() {
             $scope.userSession = $cookieStore.get('userSession') || {};
-            //console.log($scope.userSession);
             if ($scope.userSession) {
                 $scope.userdetails();
                 //$scope.getshippingaddress();
             }
         };
 
+        $scope.userSession = $cookieStore.get('userSession') || {};
+        // console.log($scope.userSession);
+
+        if ($scope.userSession.userid) {
+            console.log('User Id ', $scope.userSession.userid);
+        } else {
+            $scope.userSession.userid = '';
+            console.log('Not Logged In User', $scope.userSession.userid);
+        }
+
         $scope.hideAlerts = function() {
             $scope.stripeError = null;
             $scope.stripeToken = null;
         };
 
-        console.log(ngCart.getSubTotal());
+        // $scope.showorderSuccess = true;
+        // $scope.orderSuccess = 'Ordered Placed Successfully';
+        // $scope.showorderFailure = true;
+        // $scope.orderFailure = 'Failed to place Order';
 
         $scope.stripeCallback = function(code, result) {
             if (result.error) {
                 $scope.stripeError = result.error.message;
-                // Simulate 2 seconds loading delay
                 $timeout(function() {
-                    // Loadind done here - Show message for 3 more seconds.
                     $timeout(function() {
                         $scope.hideAlerts();
                     }, 3000);
@@ -111,20 +123,44 @@ angular.module('DemoApp').controller('MainController', [
                 var cart = store.get('cart');
                 console.log('cart', cart);
                 console.log('cart items', cart.items);
+
                 var billingData = {
                     stripeToken: result.id,
                     totalAmount: ngCart.getSubTotal(),
-                    metaData: cart.items
+                    metaData: cart.items,
+                    customer_id: $scope.userSession.userid
                 };
 
                 $http.post(baseUrl + 'billing/charge', billingData).success(function(res, req) {
                     console.log('res', res);
+                    if (res.status === true) {
+                        console.log('Ordered Placed Successfully');
+                        $scope.showorderSuccess = true;
+                        $scope.orderSuccess = 'Ordered Placed Successfully';
+                        $timeout(function() {
+                            $timeout(function() {
+                                $scope.showorderSuccess = false;
+                                $state.go('profileview');
+                            }, 3000);
+                        }, 2000);
+
+                    } else {
+
+                        console.log('Failed to place order');
+                        $scope.showorderFailure = true;
+                        $scope.orderFailure = 'Failed to place Order';
+                        $timeout(function() {
+                            $timeout(function() {
+                                $scope.showorderFailure = false;
+                            }, 3000);
+                        }, 2000);
+
+                    }
                 }).error(function(error) {
                     console.log("Error", error);
                 });
             }
         };
-
 
         if ($scope.stateParams.product_id) {
             $scope.stateParams.product_id = parseInt($scope.stateParams.product_id);
@@ -133,14 +169,6 @@ angular.module('DemoApp').controller('MainController', [
             });
             $scope.singleProduct = extract[0];
         }
-        //  console.log(ngCart.getCart().items);
-        $scope.item = {
-            'id': 'E11',
-            'name': 'Electric Key',
-            'price': '150',
-            'quantity': 5,
-            'max': 3
-        };
 
         $scope.products = [{
             'id': 1,
@@ -188,18 +216,8 @@ angular.module('DemoApp').controller('MainController', [
             'data': {}
         }];
 
-        //console.log($scope.item);
-        //console.log(ngCart.getTotalItems());
         $scope.total_length = ngCart.getTotalItems();
-        console.log($scope.total_length);
-
-        /*
-        @function userlogin
-        @type post
-        @author Sameer Vedpathak
-        @initialDate
-        @lastDate
-        **/
+        // console.log($scope.total_length);
 
         $scope.userlogin = function(user, valid) {
             if (valid) {
@@ -221,20 +239,13 @@ angular.module('DemoApp').controller('MainController', [
                             'zip': res.record[0].zip
                         };
                         $cookieStore.put('userSession', userSession);
-                        //  console.log("userDetails:", userSession);
-                        var myNewObject = $cookieStore.get('userSession');
-                        //    console.log(myNewObject);
-                        //    console.log($cookieStore.get('userSession'));
                         $scope.init();
                         $state.go('profileview');
                     } else if (res.status === false) {
                         //    console.log("login failed");
                         $scope.loginfailuremsg = 'Please Enter Valid Email Address and Password';
                         $scope.showloginfailuremsg = true;
-
-                        // Simulate 2 seconds loading delay
                         $timeout(function() {
-                            // Loadind done here - Show message for 3 more seconds.
                             $timeout(function() {
                                 $scope.showloginfailuremsg = false;
                             }, 3000);
@@ -247,24 +258,12 @@ angular.module('DemoApp').controller('MainController', [
             }
         };
 
-        /**
-          @function usersignout
-          @author Sameer Vedpathak
-          @initialDate
-          @lastDate
-        */
         $scope.usersignout = function() {
-            store.remove('userSession');
+            $cookieStore.remove('userSession');
             $location.path('home');
             $scope.init();
         };
 
-        /**
-          @function signup
-          @author Sameer Vedpathak
-          @initialDate
-          @lastDate
-        */
         $scope.signup = function(userinfo, valid) {
             if (valid) {
                 $http.post(baseUrl + 'userlogin/signup', userinfo).success(function(res, req) {
@@ -300,13 +299,6 @@ angular.module('DemoApp').controller('MainController', [
 
         };
 
-        /**
-          @function Update Billing_address
-          @author Sameer Vedpathak
-          @initialDate
-          @lastDate
-        */
-
         $scope.Billing_address = function(billingadd, valid) {
             if (valid) {
                 billingadd.userid = $scope.userSession.userid;
@@ -338,15 +330,7 @@ angular.module('DemoApp').controller('MainController', [
                     console.log("Error", error);
                 });
             }
-
         };
-
-        /**
-          @function userdetails
-          @author Sameer Vedpathak
-          @initialDate
-          @lastDate
-        */
 
         $scope.userdetails = function() {
             var user_id = {
@@ -359,13 +343,6 @@ angular.module('DemoApp').controller('MainController', [
 
         };
 
-        /**
-          @function getshippingaddress
-          @author Sameer Vedpathak
-          @initialDate
-          @lastDate
-        */
-
         $scope.getshippingaddress = function() {
             var customer_id = {
                 userid: $scope.userSession.userid
@@ -377,17 +354,6 @@ angular.module('DemoApp').controller('MainController', [
             });
         };
 
-
-
-
-        /**
-          @function for addupdate_shippingaddress
-          @param {int}
-          @author sameer vedpathak
-          @initialDate
-          @lastDate
-        */
-
         $scope.addupdate_shippingaddress = function(shipping_address, valid) {
             if (valid) {
                 if ($scope.stateParams.customer_id === '')
@@ -397,12 +363,6 @@ angular.module('DemoApp').controller('MainController', [
             }
         };
 
-        /**
-          @function add_shipping_details
-          @author Sameer Vedpathak
-          @initialDate
-          @lastDate
-        */
         $scope.add_shipping_details = function(shipping_address) {
 
             shipping_address.userid = $scope.userSession.userid;
@@ -410,9 +370,8 @@ angular.module('DemoApp').controller('MainController', [
                 if (res.status === true) {
                     $scope.ship_add_success = 'Shipping Address Successfully Added';
                     $scope.showshipaddmsg = true;
-                    // Simulate 2 seconds loading delay
+
                     $timeout(function() {
-                        // Loadind done here - Show message for 3 more seconds.
                         $timeout(function() {
                             $scope.showshipaddmsg = false;
                         }, 3000);
@@ -424,7 +383,6 @@ angular.module('DemoApp').controller('MainController', [
             }).error(function(error) {
                 console.log("Error", error);
             });
-            /* } */
         };
 
         $scope.update_shipping_details = function(shipping_address) {
@@ -433,9 +391,8 @@ angular.module('DemoApp').controller('MainController', [
                     $scope.getshippingaddress();
                     $scope.ship_add_upt_success = 'Shipping Address Info Updated';
                     $scope.showshipaddupdtmsg = true;
-                    // Simulate 2 seconds loading delay
+
                     $timeout(function() {
-                        // Loadind done here - Show message for 3 more seconds.
                         $timeout(function() {
                             $scope.showshipaddupdtmsg = false;
                         }, 3000);
@@ -443,9 +400,11 @@ angular.module('DemoApp').controller('MainController', [
                         $state.go('profileview');
                     }, 2000);
                 }
+
             }).error(function(error) {
                 console.log("Error", error);
             });
         };
+
     }
 ]);
