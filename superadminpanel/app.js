@@ -3,11 +3,11 @@
 //'use strict';
 
 // Set the main application name
-var ApplicationModuleName = 'adminPanel';
+var ApplicationModuleName = 'superadminpanel';
 
 
 // Create the main application
-var SampleApplicationModule = angular.module('adminPanel', ['ui.router', 'ngCookies','ngMessages','ngAnimate','ui.bootstrap']);
+var SampleApplicationModule = angular.module('superadminpanel', ['ui.router', 'ngCookies','ngMessages','ngAnimate','ui.bootstrap']);
 
 
 SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
@@ -92,29 +92,8 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', function
 
 }]);
 
-var compareTo = function() {
-    return {
-        require: "ngModel",
-        scope: {
-            otherModelValue: "=compareTo"
-        },
-        link: function(scope, element, attributes, ngModel) {
-             
-            ngModel.$validators.compareTo = function(modelValue) {
-                return modelValue == scope.otherModelValue;
-            };
- 
-            scope.$watch("otherModelValue", function() {
-                ngModel.$validate();
-            });
-        }
-    };
-};
- 
-SampleApplicationModule.directive("compareTo", compareTo);
 
-
-angular.module('adminPanel').controller('MainController', [
+angular.module('superadminpanel').controller('MainController', [
   '$scope',
   '$http',
   '$stateParams',
@@ -190,40 +169,38 @@ angular.module('adminPanel').controller('MainController', [
       // $scope.init();
     };
 
-    $scope.adminsignup = function(userinfo, valid) {
-      userinfo.usertype = 'admin';
-      if (valid) {
-        $http.post(baseUrl + 'userlogin/adminsignup', userinfo).success(function(res, req) {
-          if (res.status === true) {
-            $scope.signupmsg = 'User Created Successfully. Please login .';
-            $scope.showsignmsg = true;
-      
-            $timeout(function() {
-              $timeout(function() {
-                $scope.showsignmsg = false;
-              }, 3000);
-              document.getElementById("registerForm").reset();
-              //$location.path('home');
-            }, 2000);
-      
-          } else {
-            $scope.signuperrmsg = res.message;
-            $scope.showsignuperrmsg = true;
-      
-            $timeout(function() {
-              $timeout(function() {
-                $scope.showsignuperrmsg = false;
-              }, 3000);
-              document.getElementById("registerForm").reset();
-              //$location.path('login');
-            }, 2000);
-          }
-          console.log("res:",res);
-      
-        }).error(function() {
-          console.log("problem In signup");
-        });
-      }
+    $scope.signup = function(userinfo, valid) {
+      // if (valid) {
+      //   $http.post(baseUrl + 'userlogin/signup', userinfo).success(function(res, req) {
+      //     if (res.status === true) {
+      //       $scope.signupmsg = 'User Created Successfully. Please login .';
+      //       $scope.showsignmsg = true;
+      //
+      //       $timeout(function() {
+      //         $timeout(function() {
+      //           $scope.showsignmsg = false;
+      //         }, 3000);
+      //         document.getElementById("signupform").reset();
+      //         //$location.path('home');
+      //       }, 2000);
+      //
+      //     } else {
+      //       $scope.signuperrmsg = res.message;
+      //       $scope.showsignuperrmsg = true;
+      //
+      //       $timeout(function() {
+      //         $timeout(function() {
+      //           $scope.showsignuperrmsg = false;
+      //         }, 3000);
+      //         document.getElementById("signupform").reset();
+      //         $location.path('login');
+      //       }, 2000);
+      //     }
+      //
+      //   }).error(function() {
+      //     console.log("problem In signup");
+      //   });
+      // }
     };
 
   }

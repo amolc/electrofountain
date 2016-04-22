@@ -49,7 +49,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'mobile')));
 app.use(express.static(path.join(__dirname, 'adminpanel')));
-
+app.use(express.static(path.join(__dirname, 'apidocs')));
 
 /**
  * development error handler
@@ -71,7 +71,8 @@ app.use('/', express.static(__dirname + '/public'));
 app.use('/api', express.static(__dirname + '/api'));
 app.use('/mobile', express.static(__dirname + '/mobile/www'));
 app.use('/admin', express.static(__dirname + '/adminpanel'));
-
+app.use('/apidocs', express.static(__dirname + '/apidocs'));
+app.use('/superadmin', express.static(__dirname + '/superadminpanel'));
 
 var userlogin = require('./api/userlogin.js');
 var todos = require('./api/todos.js');

@@ -76,4 +76,50 @@ router.post('/signup', function(req, res) {
   });
 });
 
+router.post('/adminsignup', function(req, res) {
+  console.log("body:",req.body);
+  var password = md5(req.body.user_password);
+  userCRUD.load({
+    email_id: req.body.email,
+    user_type:req.body.usertype
+  }, function(err, val) {
+    if (val.length > 0) {
+
+      var resdata = {
+        record: '',
+        status: false,
+        message: 'User Already Exists..'
+      };
+      console.log("error", err);
+      res.jsonp(resdata);
+    } else {
+
+      userCRUD.create({
+        'email_id': req.body.email,
+        'password': password,
+        'user_type':req.body.usertype,
+        'created_on': env.timestamp(),
+        'modified_on': env.timestamp()
+      }, function(error, result) {
+        if (result) {
+          responsedata = {
+            status: true,
+            record: result,
+            message: 'admin created'
+          };
+          res.jsonp(responsedata);
+        } else {
+          responsedata = {
+            status: false,
+            record: result,
+            message: 'admin failed to create'
+          };
+          console.log("error:", error);
+          res.jsonp(responsedata);
+        }
+      });
+    }
+  });
+});
+
 module.exports = router;

@@ -1,0 +1,75 @@
+<form name="categoryForm" id="categoryForm" data-ng-controller="categoryController" data-ng-submit="addupdateCategory(categoryForm)" novalidate>
+  <h1 class="bg-info" style=" text-align: center;">CATEGORY</h1>
+  <div class="container" style="width: 100%;">
+    <br/>
+    <span class="btn btn-primary" ng-click="custom=!custom">
+      <i class="glyphicon glyphicon-plus"></i>
+      Add Category
+    </span>
+    <br/>
+    <br/>
+    <div ng-show="custom">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="form-group">
+          <input type="text" name="category_name" ng-model="category.category_name" tabindex="1" class="form-control" placeholder="Category Name" required>
+          <div class="" ng-messages="categoryForm.$submitted && categoryForm.category_name.$error" role="alert">
+            <div class="text-danger" style="text-align: center;" ng-message="required">
+              Enter Category Name</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="textarea" name="category_description" ng-model="category.category_description" tabindex="2" class="form-control" placeholder="Category Description" required>
+          <div class="" ng-messages="categoryForm.$submitted && categoryForm.category_description.$error" role="alert">
+            <div class="text-danger" style="text-align: center;" ng-message="required">
+              Enter Category Description</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" name="category_type" ng-model="category.category_type" tabindex="3" class="form-control" placeholder="Category Type" required>
+          <div class="" ng-messages="categoryForm.$submitted && categoryForm.category_type.$error" role="alert">
+            <div class="text-danger" style="text-align: center;" ng-message="required">
+              Enter Category Type</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="" ng-if="category.category_id == 0">
+            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn-primary" value="Save">
+          </div>
+          <div class="" ng-if="category.category_id > 0">
+            <input type="submit" name="category-update" id="category-update" tabindex="4" class="form-control btn-primary" value="Update">
+            <br>
+            <input type="button" ng-click="resetCategory()" name="category-cancel" id="category-cancel" tabindex="4" class="form-control btn-primary" value="Cancel">
+          </div>
+          <br>
+          <br>
+          <div ng-model="categorySuccessmsg" ng-show="showcategorySuccessmsg" class="alert alert-success">{{categorySuccessmsg}}</div>
+          <div ng-model="categoryErrorsmsg" ng-show="showcategoryErrormsg" class="alert alert-danger">{{categoryErrormsg}}</div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <table id="table" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th style="width: 90px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="cat in categoryList">
+          <th>{{cat.category_name}}</th>
+          <th>{{cat.category_description}}</th>
+          <th>{{cat.category_type}}</th>
+          <th>
+            <span class="">
+              <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="editCategory(cat)"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
+              <i class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="deleteCategory(cat,$index)"></i>
+            </span>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
