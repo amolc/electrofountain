@@ -9,7 +9,6 @@ var subcategorytwoCRUD = CRUD(connection, 'sub_category_two');
 
 
 router.post('/addsubCategorytwo', function(req, res) {
-    console.log("req body:",req.body);
     subcategorytwoCRUD.create({
         'admin_id': req.body.adminid,
         'sub_cat_two_name': req.body.sub_category_two_name,
@@ -62,7 +61,7 @@ router.get('/getsubcategoriestwo', function(req, res) {
 });
 
 router.post('/deletesubcategorytwo', function(req,res){
-console.log("req body:",req.body);
+//console.log("req body:",req.body);
     subcategorytwoCRUD.destroy({
         'sub_catagory_two_id': req.body.sub_catagory_two_id
     } , function(error,result) {

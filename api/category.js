@@ -9,7 +9,6 @@ var subcategoryCRUD = CRUD(connection, 'sub_category');
 
 
 router.post('/addcategory', function(req, res) {
-    //  console.log('Category :', req.body);
     categoryCRUD.create({
         'admin_id': req.body.admin_id,
         'category_name': req.body.category_name,
@@ -83,9 +82,7 @@ router.post('/deletecategory', function(req, res) {
     });
 });
 
-//updatecategory
 router.post('/updatecategory', function(req, res) {
-    //  console.log('update category', req.body);
     categoryCRUD.update({
         'category_id': req.body.category_id
     }, {
@@ -95,7 +92,6 @@ router.post('/updatecategory', function(req, res) {
         'category_alias': '',
         'modified_on': env.timestamp()
     }, function(error, result) {
-        //  console.log(result);
         if (result.affectedRows === 1) {
             responsedata = {
                 status: true,
@@ -117,7 +113,6 @@ router.post('/updatecategory', function(req, res) {
 
 
 router.post('/addsubcategory', function(req, res) {
-      console.log('Sub Category :', req.body);
     subcategoryCRUD.create({
         'category_id': req.body.category_id,
         'admin_id':req.body.adminid,
@@ -171,11 +166,9 @@ router.post('/getsubcategories', function(req, res) {
 
 
 router.post('/deletesubcategory', function(req, res) {
-    //console.log('delete sub category',req.body);
     subcategoryCRUD.destroy({
         sub_category_id: req.body.sub_category_id
     }, function(error, result) {
-        //  console.log(result);
         if (result) {
             responsedata = {
                 status: true,
@@ -195,9 +188,7 @@ router.post('/deletesubcategory', function(req, res) {
     });
 });
 
-//updatecategory
 router.post('/updatesubcategory', function(req, res) {
-    //  console.log('update category', req.body);
     subcategoryCRUD.update({
         'sub_category_id': req.body.sub_category_id
     }, {
