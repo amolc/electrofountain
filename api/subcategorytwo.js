@@ -61,6 +61,33 @@ router.get('/getsubcategoriestwo', function(req, res) {
 
 });
 
+router.post('/deletesubcategorytwo', function(req,res){
+console.log("req body:",req.body);
+    subcategorytwoCRUD.destroy({
+        'sub_catagory_two_id': req.body.sub_catagory_two_id
+    } , function(error,result) {
+        if (result) {
+            var responsedata ={
+                status: 'true',
+                record : result,
+                message: 'Sub Category Two Deleted'
+            };
+            res.jsonp(responsedata);
+        }else{
+            var responsedata ={
+                status : 'false',
+                record : result,
+                message: 'Failed To Delete Sub Category-Two'
+            };
+            console.log(error);
+            res.jsonp(responsedata);
+        }
+        
+    })
+});
+
+
+
 /*router.post('/deletecategory', function(req, res) {
     categoryCRUD.destroy({
         category_id: req.body.category_id

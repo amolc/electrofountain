@@ -1,4 +1,4 @@
-<form name="subcategorytwoForm" id="subcategorytwoForm" data-ng-controller="categoryController" data-ng-submit="addsubCategorytwo(subcategorytwoForm)" novalidate>
+<form name="subcategorytwoForm" id="subcategorytwoFrm" data-ng-controller="categoryController" data-ng-submit="addsubCategorytwo(subcategorytwoForm)" novalidate>
     <h1 class="bg-info" style=" text-align: center;">SUB CATEGORY2</h1>
     <div class="container" style="width: 100%;">
         <br/>
@@ -76,8 +76,8 @@
                     </th>
                     <th>
                         <span>
-                            <i class="glyphicon glyphicon-pencil" style="cursor:pointer"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <i class="glyphicon glyphicon-trash" style="cursor:pointer"></i>
+                            <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ></i>&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <i class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="deletesubcategorytwo(subcategorytwo,index)"></i>
                         </span>
                     </th>
                 </tr>

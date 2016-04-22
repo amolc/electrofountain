@@ -278,14 +278,19 @@ angular.module('adminPanel').controller('categoryController', [
             console.log("data:",data);
             console.log("sub_categorytwo:",$scope.sub_categorytwo);
             
-           /* $scope.sub_categorytwo.adminid = $scope.adminsession.adminid;
+            $scope.sub_categorytwo.adminid = $scope.adminsession.adminid;
             $http.post(baseUrl + 'subcategorytwo/addsubCategorytwo' , $scope.sub_categorytwo).success(function(res,req){
+                document.getElementById("subcategorytwoFrm").reset();
+                if (res.status == true) {
+                    console.log("res:",res);
+                    $scope.getsubcategoriestwo();    
+                }else{
+                    consol.log(res);
+                }
                 
-                console.log("res:",res);
-
             }).error(function(error){
                 console.log("Error");
-            })*/
+            })
         }
 
         $scope.getsubcategoriestwo = function(){
@@ -297,5 +302,28 @@ angular.module('adminPanel').controller('categoryController', [
             })
         }
          $scope.getsubcategoriestwo();
+
+        $scope.deletesubcategorytwo = function(subcategorytwo, index) {
+           console.log("subcategorytwo:",subcategorytwo);
+            var modalOptions = {
+                closeButtonText: 'Cancel',
+                actionButtonText: 'Delete ',
+                headerText: 'Delete Category',
+                bodyText: 'Delete Category ' + subcategorytwo.sub_cat_two_name,
+                controller: 'categoryController',
+            };
+            
+            modalService.showModal({}, modalOptions).then(function(result) {     
+                $http.post(baseUrl +'subcategorytwo/deletesubcategorytwo',subcategorytwo).success(function(res,req){
+                    console.log("res:",res);
+                    $scope.getsubcategoriestwo();
+                }).error(function(error){
+                    console.log("Error");
+                });
+            });
+        
+        };
+
+ 
     }
 ]);
