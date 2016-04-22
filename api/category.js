@@ -11,6 +11,7 @@ var subcategoryCRUD = CRUD(connection, 'sub_category');
 router.post('/addcategory', function(req, res) {
     //  console.log('Category :', req.body);
     categoryCRUD.create({
+        'admin_id': req.body.admin_id,
         'category_name': req.body.category_name,
         'category_description': req.body.category_description,
         'category_type': req.body.category_type,

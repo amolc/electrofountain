@@ -11,6 +11,11 @@ angular.module('adminPanel').controller('categoryController', [
     'modalService',
     function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, $cookieStore, ApiService, modalService) {
 
+        $scope.init = function() {
+            $scope.adminsession = $cookieStore.get('adminsession') || {};
+        };
+        console.log("$scope.adminsession:",$scope.adminsession);
+
         $scope.category = {
             category_id: 0,
             category_name: '',
@@ -27,6 +32,7 @@ angular.module('adminPanel').controller('categoryController', [
         };
 
         $scope.addupdateCategory = function(categoryForm) {
+            console.log("categoryForm:",categoryForm);
             if (categoryForm.$valid) {
                 if ($scope.category.category_id > 0) {
                     $scope.updateCategory();
@@ -46,6 +52,7 @@ angular.module('adminPanel').controller('categoryController', [
             }
         };
         $scope.addsubCategory = function() {
+
             $http.post(baseUrl + 'category/addsubcategory', $scope.sub_category).success(function(res, req) {
                 if (res.status === true) {
 
@@ -113,6 +120,8 @@ angular.module('adminPanel').controller('categoryController', [
 
 
         $scope.addCategory = function() {
+            $scope.category.admin_id = $scope.adminsession.adminid; 
+            console.log("category:",$scope.category);
             $http.post(baseUrl + 'category/addcategory', $scope.category).success(function(res, req) {
                 if (res.status === true) {
                     $scope.categoryList.push({
