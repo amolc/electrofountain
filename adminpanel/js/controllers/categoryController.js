@@ -14,13 +14,16 @@ angular.module('adminPanel').controller('categoryController', [
         $scope.init = function() {
             $scope.adminsession = $cookieStore.get('adminsession') || {};
         };
+           $scope.adminsession = $cookieStore.get('adminsession') || {};
+           //console.log($cookieStore.get('adminsession'));
         console.log("$scope.adminsession:",$scope.adminsession);
 
         $scope.category = {
             category_id: 0,
             category_name: '',
             category_description: '',
-            category_type: ''
+            category_type: '',
+            admin_id : $scope.adminsession.adminid
         };
 
         $scope.sub_category = {
@@ -120,9 +123,10 @@ angular.module('adminPanel').controller('categoryController', [
 
 
         $scope.addCategory = function() {
-            $scope.category.admin_id = $scope.adminsession.adminid; 
+//            $scope.category.admin_id = $scope.adminsession.adminid; 
             console.log("category:",$scope.category);
             $http.post(baseUrl + 'category/addcategory', $scope.category).success(function(res, req) {
+                console.log(res);
                 if (res.status === true) {
                     $scope.categoryList.push({
                         category_id: res.category_id,
@@ -194,7 +198,7 @@ angular.module('adminPanel').controller('categoryController', [
 
         $scope.getsubCategories = function() {
             ApiService.getsubcategories().then(function(data) {
-                //    console.log('sub cat', data.record);
+                   console.log('sub cat', data.record);
                 $scope.subcategoryList = data.record;
             });
         };
@@ -263,5 +267,16 @@ angular.module('adminPanel').controller('categoryController', [
         $scope.getCategories();
         $scope.getsubCategories();
 
+        $scope.subcategory = function(cat) {
+            console.log(cat);
+            console.log($scope.subcategoryList);
+            $scope.subcategory2 = _. where($scope.subcategoryList,{category_id:cat});
+            console.log($scope.subcategory2);
+        };
+
+        $scope.addsubCategorytwo = function(data){
+            console.log("data:",data);
+            console.log("sub_categorytwo:",$scope.sub_categorytwo)
+        }
     }
 ]);

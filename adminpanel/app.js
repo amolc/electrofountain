@@ -34,6 +34,10 @@ SampleApplicationModule.config(['$urlRouterProvider', '$stateProvider', function
       url: '/subcategory',
       templateUrl: 'templates/subcategory.html'
     })
+    .state('mainview.subcategory2', {
+      url: '/subcategory2',
+      templateUrl: 'templates/subcategory2.html'
+    })
     .state('mainview.products', {
       url: '/products',
       templateUrl: 'templates/products.html'
