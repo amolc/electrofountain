@@ -78,7 +78,7 @@ router.post('/signup', function(req, res) {
 
 router.post('/adminsignup', function(req, res) {
   console.log("body:",req.body);
-  var password = md5(req.body.user_password);
+  var password = md5(req.body.password);
   userCRUD.load({
     email_id: req.body.email,
     user_type:req.body.usertype
