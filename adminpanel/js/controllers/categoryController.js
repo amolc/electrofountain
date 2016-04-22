@@ -52,7 +52,7 @@ angular.module('adminPanel').controller('categoryController', [
             }
         };
         $scope.addsubCategory = function() {
-
+             $scope.sub_category.adminid  = $scope.adminsession.adminid;
             $http.post(baseUrl + 'category/addsubcategory', $scope.sub_category).success(function(res, req) {
                 if (res.status === true) {
 

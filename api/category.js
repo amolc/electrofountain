@@ -120,6 +120,7 @@ router.post('/addsubcategory', function(req, res) {
       console.log('Sub Category :', req.body);
     subcategoryCRUD.create({
         'category_id': req.body.category_id,
+        'admin_id':req.body.adminid,
         'sub_category_name': req.body.sub_category_name,
         'sub_category_description': req.body.sub_category_description,
         'sub_category_alias': '',
