@@ -127,67 +127,53 @@ angular.module('adminPanel').controller('MainController', [
   function($scope, $http, $stateParams, $location, $rootScope, $state, $timeout, $cookieStore) {
 
     $scope.stateParams = $stateParams;
-    //  console.log(store.get('userSession'));
+
+    $scope.init = function() {
+            $scope.adminsession = $cookieStore.get('adminsession') || {};
+    };
 
 
-    $scope.userlogin = function(user, loginForm) {
-      if (loginForm.$valid) {
-        if (user.email === 'test@ft.com' && user.password === '1234') {
-          $state.go('mainview.welcome');
-        }
+    $scope.userlogin = function(user, valid) {
+      if (valid) {
+        $http.post(baseUrl + 'userlogin/adminlogin', user).success(function(res, req) {
+
+          if (res.status === true) {
+            var adminsession = {
+              'login': true,
+              'adminid': res.record[0].id,
+              'admin_email': res.record[0].email_id,
+              'user_type': res.record[0].user_type
+            };
+            $cookieStore.put('adminsession', adminsession);
+            console.log("adminsession:", adminsession);
+            $scope.init();
+            $state.go('mainview.welcome');
+          } else if (res.status === false) {
+            console.log("login failed");
+            $scope.loginfailuremsg = 'Please Enter Valid Email Address and Password';
+            $scope.showloginfailuremsg = true;
+      
+            // Simulate 2 seconds loading delay
+            $timeout(function() {
+              // Loadind done here - Show message for 3 more seconds.
+              $timeout(function() {
+                $scope.showloginfailuremsg = false;
+              }, 3000);
+              document.getElementById("loginForm").reset();
+            }, 2000);
+          }
+        }).error(function() {
+          console.log("Connection Problem.");
+        });
       }
-
-      // if (valid) {
-      //   $http.post(baseUrl + 'userlogin/login', user).success(function(res, req) {
-      //     //console.log("User Details:",res);
-      //     if (res.status === true) {
-      //       var userSession = {
-      //         'login': true,
-      //         'userid': res.record[0].id,
-      //         'user_email': res.record[0].email_id,
-      //         'address': res.record[0].address,
-      //         'apartment': res.record[0].apartment,
-      //         'city': res.record[0].city,
-      //         'country': res.record[0].country,
-      //         'first_name': res.record[0].first_name,
-      //         'last_name': res.record[0].last_name,
-      //         'phone_no': res.record[0].phone_no,
-      //         'state': res.record[0].state,
-      //         'zip': res.record[0].zip
-      //       };
-      //       $cookieStore.put('userSession', userSession);
-      //       console.log("userDetails:", userSession);
-      //       var myNewObject = $cookieStore.get('userSession');
-      //       console.log(myNewObject);
-      //       console.log($cookieStore.get('userSession'));
-      //       $scope.init();
-      //       $state.go('profileview');
-      //     } else if (res.status === false) {
-      //       console.log("login failed");
-      //       $scope.loginfailuremsg = 'Please Enter Valid Email Address and Password';
-      //       $scope.showloginfailuremsg = true;
-      //
-      //       // Simulate 2 seconds loading delay
-      //       $timeout(function() {
-      //         // Loadind done here - Show message for 3 more seconds.
-      //         $timeout(function() {
-      //           $scope.showloginfailuremsg = false;
-      //         }, 3000);
-      //         document.getElementById("loginform").reset();
-      //       }, 2000);
-      //     }
-      //   }).error(function() {
-      //     console.log("Connection Problem.");
-      //   });
-      // }
 
     };
 
 
-    $scope.usersignout = function() {
-      // store.remove('userSession');
-      // $location.path('home');
-      // $scope.init();
+    $scope.adminsignout = function() {
+       $cookieStore.remove('adminsession');
+       $location.path('login');
+       $scope.init();
     };
 
     $scope.adminsignup = function(userinfo, valid) {

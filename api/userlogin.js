@@ -77,7 +77,7 @@ router.post('/signup', function(req, res) {
 });
 
 router.post('/adminsignup', function(req, res) {
-  console.log("body:",req.body);
+  //console.log("body:",req.body);
   var password = md5(req.body.password);
   userCRUD.load({
     email_id: req.body.email,
@@ -118,6 +118,32 @@ router.post('/adminsignup', function(req, res) {
           res.jsonp(responsedata);
         }
       });
+    }
+  });
+});
+
+router.post('/adminlogin', function(req, res) {
+  console.log('Request ',req.body);
+  var email = req.body.email;
+  var password = md5(req.body.password);
+  userCRUD.load({
+    email_id: email,
+    password: password
+  }, function(err, val) {
+    var resdata = {
+      record: '',
+      status: false,
+      message: 'err'
+    };
+    if (val.length > 0) {
+      resdata.record = val;
+      resdata.status = true;
+      resdata.message = 'successfully login welcome ';
+      res.jsonp(resdata);
+    } else {
+      resdata.status = false;
+      resdata.message = 'Wrong Emailid and password combination';
+      res.jsonp(resdata);
     }
   });
 });
