@@ -276,7 +276,26 @@ angular.module('adminPanel').controller('categoryController', [
 
         $scope.addsubCategorytwo = function(data){
             console.log("data:",data);
-            console.log("sub_categorytwo:",$scope.sub_categorytwo)
+            console.log("sub_categorytwo:",$scope.sub_categorytwo);
+            
+           /* $scope.sub_categorytwo.adminid = $scope.adminsession.adminid;
+            $http.post(baseUrl + 'subcategorytwo/addsubCategorytwo' , $scope.sub_categorytwo).success(function(res,req){
+                
+                console.log("res:",res);
+
+            }).error(function(error){
+                console.log("Error");
+            })*/
         }
+
+        $scope.getsubcategoriestwo = function(){
+            $http.get(baseUrl +'subcategorytwo/getsubcategoriestwo').success(function(res,req){
+                console.log("res:",res);
+                $scope.subcategorytwolist = res.record;
+            }).error(function(error){
+                console.log("Error");
+            })
+        }
+         $scope.getsubcategoriestwo();
     }
 ]);

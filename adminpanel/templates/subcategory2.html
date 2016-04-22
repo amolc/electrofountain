@@ -19,7 +19,7 @@
                             Select Category</div>
                     </div>
                 </div>
-                 <div class="form-group">{{sub_categorytwo.sub_category_id}}
+                 <div class="form-group">
                     <select class="form-control" name="subcategories" ng-model="sub_categorytwo.sub_category_id" ng-options="subcategory.sub_category_id as subcategory.sub_category_name for subcategory in subcategory2" required>
                         <option value="" disabled>Select Sub Category</option>
                     </select>
@@ -66,29 +66,29 @@
             </div>
         </div>
         <br/>
-       <!--  <table id="table" class="table table-striped table-bordered">
+        <table id="table" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Category</th>
+                    <th>Sub Category</th>
                     <th style="width: 90px;">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="subcat in subcategoryList">
-                    <th>{{subcat.sub_category_name}}</th>
-                    <th>{{subcat.sub_category_description}}</th>
-                    <th>{{ ((categoryList | filter: { category_id: subcat.category_id }))[0].category_name}}
+                <tr ng-repeat="subcategorytwo in subcategorytwolist">
+                    <th>{{subcategorytwo.sub_cat_two_name}}</th>
+                    <th>{{subcategorytwo.sub_cat_two_description}}</th>
+                    <th>{{subcategorytwo.sub_category_name}}
                     </th>
                     <th>
-                        <span class="">
+                        <!-- <span class="">
                             <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="editsubCategory(subcat)"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
                             <i class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="deletesubCategory(subcat,$index)"></i>
-                        </span>
+                        </span> -->
                     </th>
                 </tr>
             </tbody>
-        </table> -->
+        </table>
     </div>
 </form>

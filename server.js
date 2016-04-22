@@ -81,6 +81,7 @@ var sendpushnotification = require('./api/sendpushnotification.js');
 var billing = require('./api/billing.js');
 var shipping = require('./api/shipping.js');
 var category = require('./api/category.js');
+var subcategorytwo = require('./api/subcategorytwo.js'); 
 
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -95,6 +96,7 @@ app.use('/api/userlogin', userlogin);
 app.use('/api/billing', billing);
 app.use('/api/shipping', shipping);
 app.use('/api/category', category);
+app.use('/api/subcategorytwo', subcategorytwo);
 
 /*app.post('/api/addtodos',todos.addtodos);
 app.post('/api/gettodos',todos.gettodos);
