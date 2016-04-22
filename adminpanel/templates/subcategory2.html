@@ -42,13 +42,6 @@
                             Enter Sub Category2 Description</div>
                     </div>
                 </div>
-                <!-- <div class="form-group">
-          <input type="text" name="sub_category_type" ng-model="sub_category.sub_category_type" tabindex="3" class="form-control" placeholder="Sub Category Type" required>
-          <div class="" ng-messages="subcategoryForm.$submitted && subcategoryForm.sub_category_type.$error" role="alert">
-            <div class="text-danger" style="text-align: center;" ng-message="required">
-              Enter Sub Category Type</div>
-          </div>
-        </div> -->
                 <div class="form-group">
                     <div class="" ng-if="sub_category.sub_category_id == 0">
                         <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn-primary" value="Save">
@@ -82,10 +75,10 @@
                     <th>{{subcategorytwo.sub_category_name}}
                     </th>
                     <th>
-                        <!-- <span class="">
-                            <i class="glyphicon glyphicon-pencil" style="cursor:pointer" ng-click="editsubCategory(subcat)"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <i class="glyphicon glyphicon-trash" style="cursor:pointer" ng-click="deletesubCategory(subcat,$index)"></i>
-                        </span> -->
+                        <span>
+                            <i class="glyphicon glyphicon-pencil" style="cursor:pointer"></i>&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <i class="glyphicon glyphicon-trash" style="cursor:pointer"></i>
+                        </span>
                     </th>
                 </tr>
             </tbody>
