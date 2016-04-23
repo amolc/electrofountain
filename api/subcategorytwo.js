@@ -6,6 +6,7 @@ var env = require('./environment');
 var connection = env.Dbconnection;
 var categoryCRUD = CRUD(connection, 'category');
 var subcategorytwoCRUD = CRUD(connection, 'sub_category_two');
+var subcategoryCRUD = CRUD(connection, 'sub_category');
 
 
 router.post('/addsubCategorytwo', function(req, res) {
@@ -61,7 +62,6 @@ router.get('/getsubcategoriestwo', function(req, res) {
 });
 
 router.post('/deletesubcategorytwo', function(req,res){
-//console.log("req body:",req.body);
     subcategorytwoCRUD.destroy({
         'sub_catagory_two_id': req.body.sub_catagory_two_id
     } , function(error,result) {
@@ -83,6 +83,27 @@ router.post('/deletesubcategorytwo', function(req,res){
         }
         
     })
+});
+
+router.post('/getSubcategorybyCategoryid' ,function(req,res) {
+  subcategoryCRUD.load({'category_id': req.body.categoryid}, function(error , result){
+        if (result){
+            var responsedata = {
+                status: 'true',
+                record : result,
+                message: 'Getting AllSubcategy by Categoryid'
+            }
+            res.jsonp(responsedata);
+        }else{
+            var responsedata = {
+                status: 'false',
+                record : result,
+                message: 'Getting AllSubcategy by Categoryid'
+            }
+            console.log("error 106:",error);
+            res.jsonp(responsedata);
+        }
+  });  
 });
 
 

@@ -419,12 +419,21 @@ angular.module('DemoApp').controller('MainController', [
 
         $scope.getallcategory = function(){
             $http.get(baseUrl +'category/getallcategories').success(function(res,req){
-                console.log("res:",res);
+                $scope.Allcategories = res.record;
             }).error(function(error){
                 console.log("Error");
             });
         }
         $scope.getallcategory();
+
+        $scope.getsubcategoryby = function(catinfo){
+            categoryid = {'categoryid':catinfo.category_id}
+            $http.post(baseUrl + 'subcategorytwo/getSubcategorybyCategoryid', categoryid).success(function(res,req){
+                $scope.subcategorybycatid = res.record;
+            }).error(function(error){
+                console.log("error");
+            });
+        }
 
     }
 ]);

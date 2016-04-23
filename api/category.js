@@ -241,4 +241,6 @@ router.get('/getallcategories', function(req, res) {
 
 });
 
+
+
 module.exports = router;
