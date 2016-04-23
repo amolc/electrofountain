@@ -223,10 +223,15 @@
                                     <a ui-sref="home">Home</a>
                                 </li>
                                 <li id="menu-item-9492" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children arrow menu-item-9492" ng-repeat="allcat in Allcategories">
-                                    <a href="#" ng-mouseover="getsubcategoryby(allcat)">{{allcat.category_name}}</a>
+                                    <a href="#" ng-mouseover="getsubcategorybycatid(allcat)">{{allcat.category_name}}</a>
                                     <ul class="sub-menu">
                                         <li id="menu-item-30595" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30595" data-ng-repeat="subcat in subcategorybycatid">
-                                            <a href="#">{{subcat.sub_category_name}}</a>
+                                            <a ng-mouseover="getsubcategorytwo_bysubcatid(subcat)">{{subcat.sub_category_name}}</a>
+                                            <ul class="sub-menu" data-ng-repeat="subcattwo  in subcategorytwolists">
+                                                <li id="menu-item-30405" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-30405">
+                                                    <a href="#">{{subcattwo.sub_cat_two_name}}</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </li>

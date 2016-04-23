@@ -98,7 +98,29 @@ router.post('/getSubcategorybyCategoryid' ,function(req,res) {
             var responsedata = {
                 status: 'false',
                 record : result,
-                message: 'Getting AllSubcategy by Categoryid'
+                message: 'Error To Get AllSubcategy by Categoryid'
+            }
+            console.log("error 106:",error);
+            res.jsonp(responsedata);
+        }
+  });  
+});
+
+router.post('/getSubcategorytwobyCategoryid' ,function(req,res) {
+    //console.log(req.body);
+  subcategorytwoCRUD.load({'sub_category_id': req.body.sub_category_id}, function(error , result){
+        if (result){
+            var responsedata = {
+                status: 'true',
+                record : result,
+                message: 'Getting AllSubcategyTwolist by Subcategoryid'
+            }
+            res.jsonp(responsedata);
+        }else{
+            var responsedata = {
+                status: 'false',
+                record : result,
+                message: 'Error To Get AllSubcategyTwo List by Subcategoryid'
             }
             console.log("error 106:",error);
             res.jsonp(responsedata);

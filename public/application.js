@@ -426,12 +426,24 @@ angular.module('DemoApp').controller('MainController', [
         }
         $scope.getallcategory();
 
-        $scope.getsubcategoryby = function(catinfo){
+        $scope.getsubcategorybycatid = function(catinfo){
             categoryid = {'categoryid':catinfo.category_id}
             $http.post(baseUrl + 'subcategorytwo/getSubcategorybyCategoryid', categoryid).success(function(res,req){
                 $scope.subcategorybycatid = res.record;
             }).error(function(error){
                 console.log("error");
+            });
+        }
+
+        $scope.getsubcategorytwo_bysubcatid = function(subcatinfo){
+            console.log("subcatinfo: ",subcatinfo);
+            var subcatinfo = {'sub_category_id':subcatinfo.sub_category_id}
+            $http.post(baseUrl + 'subcategorytwo/getSubcategorytwobyCategoryid', subcatinfo).success(function(res,req){
+                console.log("res:",res.record);
+                $scope.subcategorytwolists = res.record;
+                //$scope.subcategorybycatid = res.record;
+            }).error(function(error){
+               console.log("error");
             });
         }
 
