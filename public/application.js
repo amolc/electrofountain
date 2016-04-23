@@ -417,5 +417,14 @@ angular.module('DemoApp').controller('MainController', [
             });
         };
 
+        $scope.getallcategory = function(){
+            $http.get(baseUrl +'category/getallcategories').success(function(res,req){
+                console.log("res:",res);
+            }).error(function(error){
+                console.log("Error");
+            });
+        }
+        $scope.getallcategory();
+
     }
 ]);

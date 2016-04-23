@@ -3,6 +3,7 @@ var router = express.Router();
 var mysql = require('mysql');
 var CRUD = require('mysql-crud');
 var env = require('./environment');
+var async = require('async');
 var connection = env.Dbconnection;
 var categoryCRUD = CRUD(connection, 'category');
 var subcategoryCRUD = CRUD(connection, 'sub_category');
@@ -39,6 +40,7 @@ router.post('/addcategory', function(req, res) {
 
 
 router.post('/getcategories', function(req, res) {
+    console.log("req.body:",req.body);
     categoryCRUD.load({}, function(error, result) {
         if (result) {
             responsedata = {
@@ -218,5 +220,25 @@ router.post('/updatesubcategory', function(req, res) {
     });
 });
 
+router.get('/getallcategories', function(req, res) {
+    categoryCRUD.load({}, function(error, result) {
+        if (result) {
+            responsedata = {
+                status: true,
+                record: result,
+                message: 'Category List'
+            };
+            res.jsonp(responsedata);
+        } else {
+            responsedata = {
+                status: false,
+                record: result,
+                message: 'Failed to Fetch Category List'
+            };
+            res.jsonp(responsedata);
+        }
+    });
+
+});
 
 module.exports = router;
