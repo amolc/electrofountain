@@ -100,7 +100,7 @@ router.post('/addcategory', function(req, res) {
  *
  *
  * @apiDescription This api allow to get Category.
- * author - sameer [sameer@80startups.com]
+ * author - shamsundar [shamsundar@80startups.com]
  *
  *
  */
