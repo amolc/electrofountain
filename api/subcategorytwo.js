@@ -128,6 +128,31 @@ router.post('/getSubcategorytwobyCategoryid' ,function(req,res) {
   });  
 });
 
+router.post('/getsubcategoriestwobyid' , function(req,res) {
+    console.log(req.body);
+    subcategorytwoCRUD.load({'sub_catagory_two_id': req.body.sub_catagory_two_id}, function(error,result){
+         if (result){
+            var responsedata = {
+                status: 'true',
+                record : result,
+                message: 'Getting SubcategyTwolist by Subcategorytwoid'
+            }
+            res.jsonp(responsedata);
+        }else{
+            var responsedata = {
+                status: 'false',
+                record : result,
+                message: 'Error To Get SubcategyTwo List by Subcategorytwoid'
+            }
+            console.log("error 147:",error);
+            res.jsonp(responsedata);
+        }
+    })
+});
+
+router.post('/updatesubcategorytwo' , function(req,body){
+    console.log("req body:",req.body);
+})
 
 
 /*router.post('/deletecategory', function(req, res) {

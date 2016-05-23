@@ -226,7 +226,7 @@
                                     <a href="#" ng-mouseover="getsubcategorybycatid(allcat)">{{allcat.category_name}}</a>
                                     <ul class="sub-menu">
                                         <li id="menu-item-30595" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30595" data-ng-repeat="subcat in subcategorybycatid">
-                                            <a ng-mouseover="getsubcategorytwo_bysubcatid(subcat)">{{subcat.sub_category_name}}</a>
+                                            <a ng-mouseover="getsubcategorytwo_bysubcatid(subcat)" ng-click="testclick()">{{subcat.sub_category_name}}</a>
                                             <ul class="sub-menu" data-ng-repeat="subcattwo  in subcategorytwolists">
                                                 <li id="menu-item-30405" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-30405">
                                                     <a href="#">{{subcattwo.sub_cat_two_name}}</a>

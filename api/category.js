@@ -9,6 +9,37 @@ var categoryCRUD = CRUD(connection, 'category');
 var subcategoryCRUD = CRUD(connection, 'sub_category');
 
 
+/**
+ * @api {post} /addcategory
+ * @apiVersion 1.0.0
+ * @apiName addcategory
+ * @apiGroup Categories
+ *
+ * @apiParam {String} category_name Name of Category.
+ *
+ *
+ * @apiSuccess {Boolean} status
+ *
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "status": true
+ *     }
+ *
+ *
+ * @apiErrorExample Error-Response:
+ *     {
+ *       "status":false,
+ *       "error": "Category failed to add"
+ *     }
+ *
+ *
+ * @apiDescription This api allow to add Category.
+ * author - sameer [sameer@80startups.com]
+ *
+ *
+ */
 router.post('/addcategory', function(req, res) {
     categoryCRUD.create({
         'admin_id': req.body.admin_id,

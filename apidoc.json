@@ -1,0 +1,10 @@
+{
+  "name": "electrofountain",
+  "version": "1.0.0",
+  "description": "electrofountain Project",
+  "apidoc": {
+    "title": "electrofountain Development",
+    "url" : "git@github.com:amolc/electrofountain.git"
+  }
+}
+
