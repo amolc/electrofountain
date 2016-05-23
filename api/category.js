@@ -16,7 +16,11 @@ var subcategoryCRUD = CRUD(connection, 'sub_category');
  * @apiGroup Categories
  *
  * @apiParam {String} category_name Name of Category.
- *
+ * @apiParam {Number} admin_id Admin Id.
+ * @apiParam {String} category_description Category Description.
+ * @apiParam {String} category_type type of Category. 
+ * @apiParam {Number} created_on Category Created On. 
+ * @apiParam {Number} modified_on Category Modified On. 
  *
  * @apiSuccess {Boolean} status
  *
@@ -69,7 +73,37 @@ router.post('/addcategory', function(req, res) {
     });
 });
 
-
+/**
+ * @api {post} /getcategories
+ * @apiVersion 1.0.0
+ * @apiName getcategories
+ * @apiGroup Categories
+ *
+ * @apiParam {String} category_name Name of Category.
+ *
+ *
+ * @apiSuccess {Boolean} status
+ *
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "status": true
+ *     }
+ *
+ *
+ * @apiErrorExample Error-Response:
+ *     {
+ *       "status":false,
+ *       "error": "Failed to get the Category"
+ *     }
+ *
+ *
+ * @apiDescription This api allow to get Category.
+ * author - sameer [sameer@80startups.com]
+ *
+ *
+ */
 router.post('/getcategories', function(req, res) {
     console.log("req.body:",req.body);
     categoryCRUD.load({}, function(error, result) {
