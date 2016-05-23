@@ -40,7 +40,7 @@ var subcategoryCRUD = CRUD(connection, 'sub_category');
  *
  *
  * @apiDescription This api allow to add Category.
- * author - sameer [sameer@80startups.com]
+ * author - shamsundar [shamsundar@80startups.com]
  *
  *
  */
